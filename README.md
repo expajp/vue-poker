@@ -1,25 +1,18 @@
-# Vue.jsでブラックジャック
+# vue-blackjack
 
-## 概要
-以下2記事を参考に、Vue.jsでブラックジャックを作る
+> A Vue.js project
 
-* [プログラミング入門者からの卒業試験は『ブラックジャック』を開発すべし \- Qiita](https://qiita.com/hirossyi73/items/cf8648c31898216312e5)
-* [Vue\.jsでブラックジャックを作ってみた \- Qiita](https://qiita.com/t2kojima/items/88a924fa3807909e0488)
+## Build Setup
 
-1ページ完結なので、VuexやVue Routerは使わない
+``` bash
+# install dependencies
+npm install
 
-## 仕様
-上記記事から引用
+# serve with hot reload at localhost:8080
+npm run dev
 
-* 初期カードは 52 枚。引く際にカードの重複は無いようにする
-* プレイヤーとディーラーの 2 人対戦。プレイヤーは実行者、ディーラーは自動的に実行
-* 実行開始時、プレイヤーとディーラーはそれぞれ、カードを 2 枚引く。引いたカードは画面に表示する。
-    * ただし、ディーラーの 2 枚目のカードは分からないようにする
-* その後、先にプレイヤーがカードを引く。プレイヤーが 21 を超えていたらバースト、その時点でゲーム終了
-* プレイヤーは、カードを引くたびに、次のカードを引くか選択できる
-* プレイヤーが引き終えたら、その後ディーラーは、自分の手札が 17 以上になるまで引き続ける
-* プレイヤーとディーラーが引き終えたら勝負。より 21 に近い方の勝ち
-* J と Q と K は 10 として扱う
-* ダブルダウンなし、スピリットなし、サレンダーなし、その他特殊そうなルールなし
+# build for production with minification
+npm run build
+```
 
-## 設計
+For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
