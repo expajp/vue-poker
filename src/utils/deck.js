@@ -10,7 +10,7 @@ const deck = []
 /* 
  export文は指定モジュールから関数、オブジェクト、プリミティブをエクスポートする
  外部からこのファイルがimportされたとき、とくに指定がなければこの関数が呼ばれる
- つまり、import from "deck"したとき、カードオブジェクトが1枚返ってくる
+ つまり、import pick from "deck"したとき、pickにこの関数が格納される
 */
 export default () => {
     return deck.splice(Math.floor(Math.random() * Math.floor(deck.length)), 1)[0]
