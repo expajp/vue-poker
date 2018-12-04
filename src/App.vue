@@ -1,12 +1,15 @@
 <template>
   <div id="app">
-    <h1>{{ msg }}</h1>
+    <game />
   </div>
 </template>
 
 <script>
+import Game from './components/Game'
+
 export default {
   name: 'app',
+  components: { Game },
   data () {
     return {
       msg: 'Hello, World!!'
@@ -16,16 +19,4 @@ export default {
 </script>
 
 <style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-
-h1 {
-  font-weight: normal;
-}
 </style>
