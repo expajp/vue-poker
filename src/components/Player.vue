@@ -25,7 +25,7 @@ import Card from './Card'
 export default {
     name: 'player',
     components: { Card },
-    props: { 'showButtons' },
+    props: ['showButtons'],
     data() {
         return {
             hand: [],
