@@ -23,7 +23,7 @@ export default {
             mainMessage: 'Welcome to Black Jack',
             playersResult: 0,
             dealersResult: 0,
-            showButtons: 0
+            showButtons: true
         }
     },
     methods: {
