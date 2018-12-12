@@ -17,6 +17,13 @@
     </div>    
 </template>
 
+<style>
+.flex {
+    display: flex;
+}
+
+</style>
+
 <script>
 import pick from '../utils/deck.js'
 import calc from '../utils/calc.js'
