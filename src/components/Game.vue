@@ -27,8 +27,15 @@ export default {
         }
     },
     methods: {
-        stand: function(playersResult){},
-        postexec: function(dealersResult){},
+        stand: function(playersResult){
+            this.playersResult = playersResult
+            this.$refs.dealer.$emit('postexec', playersResult == 'Burst!!')
+        },
+        postexec: function(dealersResult){
+            this.dealersResult = dealersResult
+            this.showButtons = false
+            this.mainMessage = `Dealer : ${dealersResult} / Player : ${this.playersResult}`
+        },
     },
     computed: {
         resultMessage: function(){
