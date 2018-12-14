@@ -45,17 +45,19 @@ export default {
         this.result = calc(this.hand)
     },
     methods: {
-        hit(){
+        hit: function(){
             this.hand.push(pick())
             this.result = calc(this.hand)
         },
-        stand(){
+        stand: function(){
             this.$emit('stand', this.result)
         }
     },
     watch: {
-        result: function(oldValue, newValue){
-            if (newValue == 'Burst!!') this.$emit('stand', newValue)
+        result: function(newValue, oldValue){
+            if (newValue === 'Burst!!'){
+                this.$emit('stand', newValue)
+            }
         }
     }
 }

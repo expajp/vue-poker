@@ -10,10 +10,6 @@
             >                
             </card>
         </div>
-        <div class="flex" v-show="showButtons">
-            <button @click="hit">Hit</button>
-            <button @click="stand">Stand</button>
-        </div>
     </div>    
 </template>
 
@@ -39,9 +35,11 @@ export default {
         this.$on('postexec', this.postexec)
     },
     methods: {
-        postexec(playerBurst){
+        postexec: function(playerBust){
             this.hand[0].hide = false // すべてのカードを公開
-            while(!playerBurst && calc(this.hand)< 17) this.hand.push(pick())
+            while(!playerBust && calc(this.hand)< 17) {
+                this.hand.push(pick())
+            }
             this.$emit('result', calc(this.hand))
         }
     }

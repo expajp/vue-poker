@@ -18,7 +18,7 @@ import Player from './Player'
 export default {
     name: 'game',
     components: { Dealer, Player },
-    data(){
+    data() {
         return {
             mainMessage: 'Welcome to Black Jack',
             playersResult: 0,
