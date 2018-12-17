@@ -27,16 +27,15 @@ export default {
         }
     },
     created: function(){
-        this.hand.push(pick())
-        this.hand.push(pick())
-
-        this.hand[0].hide = true;
-
-        this.$on('postexec', this.postexec)
+        for(let i=0;i<5;i++){
+            this.hand.push(pick())
+            console.log(this.hand.length-1)
+            this.hand[this.hand.length-1].hide = true;
+        }
+        // this.$on('postexec', this.postexec)
     },
     methods: {
         postexec: function(playerBust){
-            this.hand[0].hide = false // すべてのカードを公開
             while(!playerBust && calc(this.hand)< 17) {
                 this.hand.push(pick())
             }

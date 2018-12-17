@@ -40,8 +40,7 @@ export default {
         }
     },
     created: function(){
-        this.hand.push(pick())
-        this.hand.push(pick())
+        for(let i=0;i<5;i++) this.hand.push(pick())
         this.result = calc(this.hand)
     },
     methods: {
