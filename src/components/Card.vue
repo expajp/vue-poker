@@ -10,7 +10,12 @@ export default {
     props: {
         number: Number,
         suit: String,
-        hide: Boolean
+        selected: Boolean
+    },
+    methods: {
+        select: function(){
+            // TODO
+        }
     },
     computed: {
         /*

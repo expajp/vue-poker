@@ -36,27 +36,19 @@ export default {
     data() {
         return {
             hand: [],
+            selected: [],
             result: 0
         }
     },
     created: function(){
         for(let i=0;i<5;i++) this.hand.push(pick())
-        this.result = calc(this.hand)
     },
     methods: {
-        hit: function(){
-            this.hand.push(pick())
-            this.result = calc(this.hand)
+        change: function(){
+            // TODO
         },
         stand: function(){
             this.$emit('stand', this.result)
-        }
-    },
-    watch: {
-        result: function(newValue, oldValue){
-            if (newValue === 'Burst!!'){
-                this.$emit('stand', newValue)
-            }
         }
     }
 }
