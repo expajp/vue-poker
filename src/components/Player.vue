@@ -3,6 +3,7 @@
         <div class="flex">
             <card
                 v-for="(card, index) in hand"
+                @click="select"
                 :key="index"
                 :suit="card.suit"
                 :number="card.number"
@@ -11,7 +12,7 @@
             </card>
         </div>
         <div class="flex" v-show="showButtons">
-            <button @click="hit">Hit</button>
+            <button @click="change">Change</button>
             <button @click="stand">Stand</button>
         </div>
     </div>    
@@ -44,7 +45,12 @@ export default {
         for(let i=0;i<5;i++) this.hand.push(pick())
     },
     methods: {
+        select: function(){
+            card.selected = true
+            this.selected.push(card)
+        },
         change: function(){
+            console.log('hoge')
             // TODO
         },
         stand: function(){

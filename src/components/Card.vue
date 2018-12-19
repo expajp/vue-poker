@@ -1,6 +1,6 @@
 <template>
     <div class="card">
-        <img :src="image" height="280" />
+        <img :src="image" height="280" :class="selectedClass" />
     </div>
 </template>
 
@@ -12,9 +12,11 @@ export default {
         suit: String,
         selected: Boolean
     },
-    methods: {
-        select: function(){
-            // TODO
+    data() {
+        return {
+            selectedClass: {
+                'margin-top': '-20px'
+            }
         }
     },
     computed: {
