@@ -1,6 +1,6 @@
 <template>
-    <div class="card">
-        <img :src="image" height="280" :class="selectedClass" />
+    <div class="card" @click="select">
+        <img :src="image" height="280" />
     </div>
 </template>
 
@@ -28,6 +28,13 @@ export default {
         image: function(){
             const filename = this.hide ? 'back' : `${this.suit}_${this.number.toString().padStart(2, '0')}` // 1桁のアタマは0に
             return require(`../assets/card_${filename}.png`)
+        }
+    }, 
+    methods: {
+        select: function(){
+            console.log('selected!');
+            this.selected = true
+            this.$emit('select', this)
         }
     }
 }

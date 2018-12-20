@@ -3,7 +3,6 @@
         <div class="flex">
             <card
                 v-for="(card, index) in hand"
-                @click="select"
                 :key="index"
                 :suit="card.suit"
                 :number="card.number"
@@ -45,8 +44,7 @@ export default {
         for(let i=0;i<5;i++) this.hand.push(pick())
     },
     methods: {
-        select: function(){
-            card.selected = true
+        select: function(card){
             this.selected.push(card)
         },
         change: function(){
