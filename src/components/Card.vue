@@ -1,8 +1,14 @@
 <template>
-    <div class="card" @click="select">
+    <div @click="select" :class="{ 'card': true, 'select': selected }">
         <img :src="image" height="280" />
     </div>
 </template>
+
+<style>
+.select {
+    margin-top: -20px;
+}
+</style>
 
 <script>
 export default {
@@ -11,13 +17,6 @@ export default {
         number: Number,
         suit: String,
         selected: Boolean
-    },
-    data() {
-        return {
-            selectedClass: {
-                'margin-top': '-20px'
-            }
-        }
     },
     computed: {
         /*
@@ -28,13 +27,15 @@ export default {
         image: function(){
             const filename = this.hide ? 'back' : `${this.suit}_${this.number.toString().padStart(2, '0')}` // 1桁のアタマは0に
             return require(`../assets/card_${filename}.png`)
+        },
+        class: function(){
+            return { card: true, select: this.selected }
         }
     }, 
     methods: {
         select: function(){
-            console.log('selected!');
-            this.selected = true
             this.$emit('select', this)
+            console.log(this.selected)
         }
     }
 }

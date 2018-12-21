@@ -6,7 +6,8 @@
                 :key="index"
                 :suit="card.suit"
                 :number="card.number"
-                :hide="card.hide"
+                :selected="card.selected"
+                v-on:select="select"
             >                
             </card>
         </div>
@@ -45,7 +46,8 @@ export default {
     },
     methods: {
         select: function(card){
-            this.selected.push(card)
+            console.log(card)
+            card.selected = true
         },
         change: function(){
             console.log('hoge')
