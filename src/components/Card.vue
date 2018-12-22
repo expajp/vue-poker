@@ -30,12 +30,11 @@ export default {
         },
         class: function(){
             return { card: true, select: this.selected }
-        }
+        },
     }, 
     methods: {
         select: function(){
             this.$emit('select', this)
-            console.log(this.selected)
         }
     }
 }

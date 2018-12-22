@@ -46,8 +46,13 @@ export default {
     },
     methods: {
         select: function(card){
-            console.log(card)
-            card.selected = true
+            const selectedCard = this.hand.find(
+                // handに入っているのはVueコンポーネントでなくオブジェクトなのでnumberとsuitで一致を取る
+                elm => { return elm.number === card.number && elm.suit === card.suit }
+            )
+            selectedCard.selected = !card.selected
+            this.selected.push(selectedCard)
+            console.log(this.selected)
         },
         change: function(){
             console.log('hoge')
