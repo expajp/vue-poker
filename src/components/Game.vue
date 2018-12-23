@@ -11,6 +11,17 @@
     </div>
 </template>
 
+<style>
+.dealer{
+    margin-top: 40px;
+}
+.player{
+    margin-top: 40px;
+}
+
+</style>
+
+
 <script>
 import Dealer from './Dealer'
 import Player from './Player'
