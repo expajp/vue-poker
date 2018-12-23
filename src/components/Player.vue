@@ -50,8 +50,13 @@ export default {
                 // handに入っているのはVueコンポーネントでなくオブジェクトなのでnumberとsuitで一致を取る
                 elm => { return elm.number === card.number && elm.suit === card.suit }
             )
+            if(card.selected){
+                this.selected.splice(selectedCard, 1)
+            } else {
+                this.selected.push(selectedCard)
+            }
             selectedCard.selected = !card.selected
-            this.selected.push(selectedCard)
+            
             console.log(this.selected)
         },
         change: function(){
