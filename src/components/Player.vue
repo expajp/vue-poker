@@ -12,7 +12,7 @@
             </card>
         </div>
         <div class="flex" v-show="showButtons">
-            <button @click="change">Change</button>
+            <button @click="change" v-show="!changed">Change</button>
             <button @click="stand">Stand</button>
         </div>
     </div>    
@@ -38,6 +38,7 @@ export default {
         return {
             hand: [],
             selected: [],
+            changed: false,
             result: 0
         }
     },
@@ -56,12 +57,24 @@ export default {
                 this.selected.push(selectedCard)
             }
             selectedCard.selected = !card.selected
-            
-            console.log(this.selected)
         },
         change: function(){
-            console.log('hoge')
-            // TODO
+            if(this.selected.length > 0) this.changed = true
+            this.selected.forEach(selected => {
+                const handIdx = this.hand.findIndex(elm => {
+                    return elm.number === selected.number && elm.suit === selected.suit
+                })
+                this.hand.splice(handIdx, 1, pick(true))
+
+                const selectedIdx = this.selected.findIndex(elm => {
+                    return elm.number === selected.number && elm.suit === selected.suit
+                })
+                this.selected.splice(selectedIdx, 1, this.hand[handIdx])
+            })
+            this.hand.forEach(elm => {
+                console.log(`${elm.suit} ${elm.number} selected: ${elm.selected}`)
+            })
+            console.log(this.selected)
         },
         stand: function(){
             this.$emit('stand', this.result)
