@@ -16,7 +16,8 @@ export default {
     props: {
         number: Number,
         suit: String,
-        selected: Boolean
+        selected: Boolean,
+        hide: Boolean
     },
     computed: {
         /*

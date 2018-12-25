@@ -29,7 +29,6 @@ export default {
     created: function(){
         for(let i=0;i<5;i++){
             this.hand.push(pick())
-            console.log(this.hand.length-1)
             this.hand[this.hand.length-1].hide = true;
         }
         // this.$on('postexec', this.postexec)
