@@ -39,8 +39,8 @@ export default {
     },
     methods: {
         stand: function(playersResult){
-            this.playersResult = playersResult
-            this.$refs.dealer.$emit('postexec', playersResult == 'Burst!!')
+            console.log(playersResult)
+            // this.$refs.dealer.$emit('postexec', playersResult == 'Burst!!')
         },
         postexec: function(dealersResult){
             this.dealersResult = dealersResult

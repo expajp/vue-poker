@@ -60,6 +60,7 @@ export default {
         },
         change: function(){
             if(this.selected.length > 0) this.changed = true
+
             this.selected.forEach(selected => {
                 const handIdx = this.hand.findIndex(elm => {
                     return elm.number === selected.number && elm.suit === selected.suit
@@ -71,12 +72,9 @@ export default {
                 })
                 this.selected.splice(selectedIdx, 1, this.hand[handIdx])
             })
-            this.hand.forEach(elm => {
-                console.log(`${elm.suit} ${elm.number} selected: ${elm.selected}`)
-            })
-            console.log(this.selected)
         },
         stand: function(){
+            this.result = calc(this.hand)
             this.$emit('stand', this.result)
         }
     }

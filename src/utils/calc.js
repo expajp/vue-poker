@@ -4,14 +4,34 @@
  Rubyで言えば Array#any?
 */
 export default hand => {
-    const points = hand.map(card => (card.number > 10 ? 10 : card.number))
-    const sum = points.reduce((ret, cur) => ret + cur)
-
-    if(sum > 21){
-        return 'Burst!!' // 21を超えるとバースト
-    } 
-    if(sum <= 11 && points.some(a => a === 1)) {
-        return sum + 10 // Aを含み、合計が11以下なら1つを11として扱う（+10する）
-    }
-    return sum
+    const ret = Object.assign(numbersCounter(hand), flashChecker(hand)) 
+    console.log(JSON.stringify(ret))
+    return ret
 }
+
+function numbersCounter(hand) {
+    let ret = { pairs: 0, threeCard: false, fourCard: false }
+    
+    const numbers = hand.map( card => { return card.number } ).sort()
+    const numbersCounter = [...new Set(numbers)]
+
+    numbersCounter.forEach(number => {
+        const count = numbers.filter(num => { return num === number }).length
+        switch(count){
+            case 2:
+                ret.pairs += 1; break
+            case 3: 
+                ret.threeCard = true; break
+            case 4: 
+                ret.fourCard = true; break
+            default: 
+                break
+        }
+    })
+    return ret
+}
+
+function flashChecker(hand) {
+    return { flash: [...new Set(hand)].length === 1 }
+}
+
