@@ -4,7 +4,7 @@
  Rubyで言えば Array#any?
 */
 export default hand => {
-    const ret = Object.assign(numbersCounter(hand), flashChecker(hand)) 
+    const ret = Object.assign(numbersCounter(hand), flashChecker(hand), straightChecker(hand)) 
     console.log(JSON.stringify(ret))
     return ret
 }
@@ -35,3 +35,8 @@ function flashChecker(hand) {
     return { flash: [...new Set(hand)].length === 1 }
 }
 
+function straightChecker(hand) {
+    const numbers = hand.map( card => { return card.number } ).sort()
+    const maxIndex = numbers.length-1
+    return { straight: numbers[maxIndex]-numbers[0] === maxIndex }
+}
