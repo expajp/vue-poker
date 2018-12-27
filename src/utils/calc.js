@@ -38,5 +38,9 @@ function flashChecker(hand) {
 function straightChecker(hand) {
     const numbers = hand.map( card => { return card.number } ).sort()
     const maxIndex = numbers.length-1
-    return { straight: numbers[maxIndex]-numbers[0] === maxIndex }
+    return { straight: score(numbers[maxIndex])-score(numbers[0]) === maxIndex }
+}
+
+function score(n){
+    return (n+11)%13
 }
