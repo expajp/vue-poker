@@ -28,6 +28,7 @@
 <script>
 import pick from '../utils/deck.js'
 import calc from '../utils/calc.js'
+import score from '../utils/score.js'
 import Card from './Card'
 
 export default {
@@ -53,6 +54,7 @@ export default {
             card.hide = false 
             card.selected = false
         })
+        this.hand.sort((a, b) => { return score(a.number)-score(b.number) })
     },
     methods: {
         select: function(card){

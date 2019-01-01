@@ -1,3 +1,5 @@
+import score from './score.js'
+
 /*
  Array.prototype.some()
  引数に指定された関数に次々に配列の要素を代入し、ひとつでもtrueを返すものがあればtrueを返す
@@ -48,6 +50,3 @@ function straightChecker(hand) {
     return { straight: Math.abs(score(numbers[maxIndex])-score(numbers[0])) === maxIndex }
 }
 
-function score(n){
-    return (n+11)%13
-}
