@@ -15,16 +15,35 @@ function getYaku(hand){
     console.log(JSON.parse(JSON.stringify(checkersResult)))
     let ret = { yaku: 'None', score: 0, suit: '' }
 
-    if(checkersResult.pairs == 1) ret.yaku = 'OnePair'
-    if(checkersResult.pairs == 2) ret.yaku = 'TwoPair'
-    if(checkersResult.threeCard) ret.yaku = 'ThreeCard'
+    if(checkersResult.pairs == 1){
+        ret.score = checkersResult.numbersScore
+        ret.suit = checkersResult.numbersSuit
+        ret.yaku = 'OnePair'
+    }
+    if(checkersResult.pairs == 2){
+        ret.score = checkersResult.numbersScore
+        ret.suit = checkersResult.numbersSuit
+        ret.yaku = 'TwoPair'
+    } 
+    if(checkersResult.threeCard){
+        ret.suit = checkersResult.numbersSuit
+        ret.yaku = 'ThreeCard'
+    }
     if(checkersResult.straight) ret.yaku = 'Straight'
-    if(checkersResult.flash) ret.yaku = 'Flash'
+    if(checkersResult.flash){
+        ret.suit = checkersResult.flashSuit
+        ret.yaku = 'Flash'
+    }
     if(checkersResult.pairs == 1 && checkersResult.threeCard) ret.yaku = 'FullHouse'
     if(checkersResult.fourCard) ret.yaku = 'FourCard'
-    if(checkersResult.straight && checkersResult.flash) ret.yaku = 'StraightFlash'
-    if(checkersResult.straight && checkersResult.flash && checkersResult.score == 12) ret.yaku = 'RoyalStraightFlash'
-
+    if(checkersResult.straight && checkersResult.flash){
+        ret.suit = checkersResult.straightSuit
+        ret.yaku = 'StraightFlash'
+    }
+    if(checkersResult.straight && checkersResult.flash && checkersResult.score == 12){
+        ret.suit = checkersResult.straightSuit
+        ret.yaku = 'RoyalStraightFlash'
+    }
     return ret
 }
 function numbersCounter(hand) {
