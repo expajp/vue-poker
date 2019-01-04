@@ -12,8 +12,10 @@ export default hand => {
 
 function getYaku(hand){
     const checkersResult = Object.assign(numbersCounter(hand), flashChecker(hand), straightChecker(hand), scoreChecker(hand))
-    console.log(JSON.parse(JSON.stringify(checkersResult)))
-    let ret = { yaku: 'None', score: 0, suit: '' }
+    console.log(JSON.stringify(checkersResult))
+    const sortedHand = hand.sort((a, b) => { return a.number - b.number })
+    const suits = hand.map(card => { return card.suit } ).sort()
+    let ret = { yaku: 'None', score: sortedHand[sortedHand.length-1].number, suit: sortedHand[sortedHand.length-1].suit }
 
     if(checkersResult.pairs == 1){
         ret.score = checkersResult.numbersScore
@@ -49,16 +51,21 @@ function getYaku(hand){
 function numbersCounter(hand) {
     let ret = { pairs: 0, threeCard: false, fourCard: false, numbersScore: 0, numbersSuit: '' }
     
-    const numbers = hand.map( card => { return card.number } ).sort()
+    const numbers = hand.map(card => { return card.number } ).sort()
     const numbersCounter = [...new Set(numbers)]
 
     numbersCounter.forEach(number => {
-        const count = numbers.filter(num => { return num === number }).length
+        const filteredCards = numbers.filter(num => { return num === number })
+        const count = filteredCards.length
+        const suits = filteredCards.map(card => { return card.suit } ).sort()
         switch(count){
             case 2:
-                ret.pairs += 1
-                ret.numbersSuit = (ret.numbersScore < score(number) ? score(number) : ret.numbersScore)
-                ret.numbersScore = (ret.numbersScore < score(number) ? score(number) : ret.numbersScore); break
+                ret.pairs += 1 
+                if(ret.numbersScore < score(number)){
+                    ret.numbersSuit = suits[suits.length-1]
+                    ret.numbersScore = score(number)
+                }
+                break
             case 3: 
                 ret.threeCard = true
                 ret.numbersSuit = ''
