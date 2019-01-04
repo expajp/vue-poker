@@ -16,6 +16,7 @@
 <script>
 import pick from '../utils/deck.js'
 import calc from '../utils/calc.js'
+import score from '../utils/score.js'
 import Card from './Card'
 
 export default {
@@ -29,16 +30,16 @@ export default {
     created: function(){
         for(let i=0;i<5;i++){
             this.hand.push(pick())
-            this.hand[this.hand.length-1].hide = true;
         }
-        // this.$on('postexec', this.postexec)
+        this.hand.sort((a, b) => { return score(a.number)-score(b.number) })
+        this.$on('postexec', this.postexec)
     },
     methods: {
-        postexec: function(playerBust){
-            while(!playerBust && calc(this.hand)< 17) {
-                this.hand.push(pick())
-            }
+        postexec: function(){
+            calc(this.hand)
+            /*
             this.$emit('result', calc(this.hand))
+            */
         }
     }
 }

@@ -38,12 +38,10 @@ export default {
         }
     },
     methods: {
-        stand: function(playersResult){
-            console.log(playersResult)
-            // this.$refs.dealer.$emit('postexec', playersResult == 'Burst!!')
+        stand: function(){
+            this.$refs.dealer.$emit('postexec')
         },
-        postexec: function(dealersResult){
-            this.dealersResult = dealersResult
+        postexec: function(){
             this.showButtons = false
             this.mainMessage = `Dealer : ${dealersResult} / Player : ${this.playersResult}`
         },
