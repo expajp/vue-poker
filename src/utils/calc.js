@@ -7,23 +7,65 @@ import score from './score.js'
 */
 export default (playersHand) => {
     const yaku = getYaku(playersHand)
-    console.log(yaku)
-    return yaku
+    return getScoreFromYaku(yaku)
+}
+
+function getScoreFromYaku(yaku){
+    const yakuScore = invertYakuToNumber(yaku.yaku);
+    const score = yaku.number.toString(16) + invertSuitToNumber(yaku.suit).toString()
+    
+    return ('00'.repeat(7)+score+'00'.repeat(yakuScore)).substr(-16)
+}
+
+function invertYakuToNumber(yaku){
+    switch(yaku){
+        case 'OnePair' :
+            return 0 
+        case 'TwoPair' :
+            return 1
+        case 'ThreeCard' :
+            return 2
+        case 'Straight' :
+            return 3
+        case 'Flash' :
+            return 4
+        case 'FullHouse' :
+            return 5
+        case 'FourCard' :
+            return 6
+        case 'StraightFlash' :
+            return 7
+        case 'RoyalStraightFlash' :
+            return 8
+    }
+}
+
+function invertSuitToNumber(suit){
+    switch(suit){
+        case 'clover' :
+            return 1;   
+        case 'diamond' :
+            return 2;   
+        case 'heart' :
+            return 3;   
+        case 'spade' :
+            return 4;
+    }
 }
 
 function getYaku(hand){
     const checkersResult = Object.assign(numbersCounter(hand), flashChecker(hand), straightChecker(hand))
     console.log(JSON.stringify(checkersResult))
     const sortedHand = deepcopyArray(hand).sort((a, b) => { return score(a.number) - score(b.number) })
-    let ret = { yaku: 'None', score: score(sortedHand[sortedHand.length-1].number), suit: sortedHand[sortedHand.length-1].suit }
+    let ret = { yaku: 'None', number: score(sortedHand[sortedHand.length-1].number), suit: sortedHand[sortedHand.length-1].suit }
 
     if(checkersResult.pairs == 1){
-        ret.score = checkersResult.numbersScore
+        ret.number = checkersResult.numbersScore
         ret.suit = checkersResult.numbersSuit
         ret.yaku = 'OnePair'
     }
     if(checkersResult.pairs == 2){
-        ret.score = checkersResult.numbersScore
+        ret.number = checkersResult.numbersScore
         ret.suit = checkersResult.numbersSuit
         ret.yaku = 'TwoPair'
     } 
