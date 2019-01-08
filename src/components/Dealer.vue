@@ -24,7 +24,8 @@ export default {
     components: { Card },
     data() {
         return {
-            hand: []
+            hand: [],
+            result: 0
         }
     },
     created: function(){
@@ -36,10 +37,8 @@ export default {
     },
     methods: {
         postexec: function(){
-            calc(this.hand)
-            /*
-            this.$emit('result', calc(this.hand))
-            */
+            this.result = calc(this.hand)
+            this.$emit('result', this.result)
         }
     }
 }

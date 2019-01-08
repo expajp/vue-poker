@@ -38,19 +38,21 @@ export default {
         }
     },
     methods: {
-        stand: function(){
+        stand: function(playersResult){
+            this.playersResult = playersResult
             this.$refs.dealer.$emit('postexec')
         },
-        postexec: function(){
+        postexec: function(dealersResult){
             this.showButtons = false
+            this.dealersResult = dealersResult
             this.mainMessage = `Dealer : ${dealersResult} / Player : ${this.playersResult}`
         },
     },
     computed: {
         resultMessage: function(){
             if(this.showButtons) return ''
-            if(this.playersResult > this.dealersResult || this.dealersResult == 'Burst!!') return 'You Win'
-            if(this.playersResult < this.dealersResult || this.playersResult == 'Burst!!') return 'You Lose'
+            if(this.playersResult > this.dealersResult) return 'You Win'
+            if(this.playersResult < this.dealersResult) return 'You Lose'
             return 'Draw'
         }
     }

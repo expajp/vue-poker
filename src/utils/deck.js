@@ -14,7 +14,6 @@ const deck = []
 */
 export default (selected) => {
     let card = deck.splice(Math.floor(Math.random() * Math.floor(deck.length)), 1)[0]
-    console.log(card)
     card.selected = selected ? true : false
     return card
 }

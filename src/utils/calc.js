@@ -55,7 +55,6 @@ function invertSuitToNumber(suit){
 
 function getYaku(hand){
     const checkersResult = Object.assign(numbersCounter(hand), flashChecker(hand), straightChecker(hand))
-    console.log(JSON.stringify(checkersResult))
     const sortedHand = deepcopyArray(hand).sort((a, b) => { return score(a.number) - score(b.number) })
     let ret = { yaku: 'None', number: score(sortedHand[sortedHand.length-1].number), suit: sortedHand[sortedHand.length-1].suit }
 
@@ -107,7 +106,6 @@ function numbersCounter(hand) {
                 if(ret.numbersScore < score(number)){
                     ret.numbersSuit = suits[suits.length-1]
                     ret.numbersScore = score(number)
-                    console.log(ret)
                 }
                 break
             case 3: 

@@ -86,7 +86,7 @@ export default {
         },
         stand: function(){
             this.result = calc(this.hand)
-            this.$emit('stand')
+            this.$emit('stand', this.result)
         }
     }
 }
