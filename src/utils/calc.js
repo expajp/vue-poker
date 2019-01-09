@@ -14,7 +14,7 @@ function getScoreFromYaku(yaku){
     const yakuScore = invertYakuToNumber(yaku.yaku);
     const score = yaku.number.toString(16) + invertSuitToNumber(yaku.suit).toString()
     
-    return ('00'.repeat(7)+score+'00'.repeat(yakuScore)).substr(-16)
+    return { yaku: yaku.yaku, comparableStr: ('00'.repeat(8)+score+'00'.repeat(yakuScore)).substr(-18) }
 }
 
 function invertYakuToNumber(yaku){
@@ -83,7 +83,7 @@ function getYaku(hand){
         ret.suit = checkersResult.straightSuit
         ret.yaku = 'StraightFlash'
     }
-    if(checkersResult.straight && checkersResult.flash && ret.score === 12){
+    if(checkersResult.straight && checkersResult.flash && ret.number === 12){
         ret.suit = checkersResult.straightSuit
         ret.yaku = 'RoyalStraightFlash'
     }

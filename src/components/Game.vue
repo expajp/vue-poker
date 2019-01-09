@@ -45,15 +45,15 @@ export default {
         postexec: function(dealersResult){
             this.showButtons = false
             this.dealersResult = dealersResult
-            this.mainMessage = `Dealer : ${dealersResult} / Player : ${this.playersResult}`
+            this.mainMessage = `Dealer : ${dealersResult.yaku} / Player : ${this.playersResult.yaku}`
         },
     },
     computed: {
         resultMessage: function(){
             if(this.showButtons) return ''
-            if(this.playersResult > this.dealersResult) return 'You Win'
-            if(this.playersResult < this.dealersResult) return 'You Lose'
-            return 'Draw'
+            if(this.playersResult.comparableStr > this.dealersResult.comparableStr) return 'You Win'
+            if(this.playersResult.comparableStr < this.dealersResult.comparableStr) return 'You Lose'
+            return 'Error!!'
         }
     }
 }
