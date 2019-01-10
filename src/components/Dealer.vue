@@ -29,9 +29,20 @@ export default {
         }
     },
     created: function(){
-        for(let i=0;i<5;i++){
-            this.hand.push(pick())
-        }
+        // for(let i=0;i<5;i++){
+        //     this.hand.push(pick())
+        // }
+        this.hand.push({ suit: 'spade',   number: 13})
+        this.hand.push({ suit: 'heart',   number: 13})
+        this.hand.push({ suit: 'diamond', number: 13})
+        this.hand.push({ suit: 'club',    number: 13})
+        this.hand.push({ suit: 'diamond', number:  2})
+        this.hand.forEach(card => { 
+            card.hide = false 
+            card.selected = false
+        })
+        this.hand.sort((a, b) => { return score(a.number)-score(b.number) })
+
         this.hand.sort((a, b) => { return score(a.number)-score(b.number) })
         this.$on('postexec', this.postexec)
     },
