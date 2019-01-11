@@ -50,6 +50,8 @@ function invertSuitToNumber(suit){
             return 3;   
         case 'spade' :
             return 4;
+        default: 
+            return 0;
     }
 }
 

@@ -42,8 +42,6 @@ export default {
             card.selected = false
         })
         this.hand.sort((a, b) => { return score(a.number)-score(b.number) })
-
-        this.hand.sort((a, b) => { return score(a.number)-score(b.number) })
         this.$on('postexec', this.postexec)
     },
     methods: {
