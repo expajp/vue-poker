@@ -71,6 +71,7 @@ function getYaku(hand){
         ret.yaku = 'TwoPair'
     } 
     if(checkersResult.threeCard){
+        ret.number = checkersResult.numbersScore
         ret.suit = checkersResult.numbersSuit
         ret.yaku = 'ThreeCard'
     }
