@@ -47,8 +47,8 @@ export default {
         // for(let i=0;i<5;i++) this.hand.push(pick())
         this.hand.push({ suit: 'club',    number:  1})
         this.hand.push({ suit: 'diamond', number:  1})
-        this.hand.push({ suit: 'spade',   number:  2})
-        this.hand.push({ suit: 'heart',   number:  3})
+        this.hand.push({ suit: 'spade',   number: 13})
+        this.hand.push({ suit: 'heart',   number: 13})
         this.hand.push({ suit: 'spade',   number:  9})
         this.hand.forEach(card => { 
             card.hide = false 

@@ -12,9 +12,9 @@ export default (playersHand) => {
 
 function getScoreFromYaku(yaku){
     const yakuScore = invertYakuToNumber(yaku.yaku);
-    const score = yaku.number.toString(16) + invertSuitToNumber(yaku.suit).toString()
+    const score = yaku.number.toString(16) + yaku.secondNumber.toString(16) + invertSuitToNumber(yaku.suit).toString()
     
-    return { yaku: yaku.yaku, comparableStr: ('00'.repeat(8)+score+'00'.repeat(yakuScore)).substr(-18) }
+    return { yaku: yaku.yaku, comparableStr: ('000'.repeat(8)+score+'000'.repeat(yakuScore)).substr(-27) }
 }
 
 function invertYakuToNumber(yaku){
@@ -58,7 +58,12 @@ function invertSuitToNumber(suit){
 function getYaku(hand){
     const checkersResult = Object.assign(numbersCounter(hand), flashChecker(hand), straightChecker(hand))
     const sortedHand = deepcopyArray(hand).sort((a, b) => { return score(a.number) - score(b.number) })
-    let ret = { yaku: 'None', number: score(sortedHand[sortedHand.length-1].number), suit: sortedHand[sortedHand.length-1].suit }
+    let ret = { 
+        yaku: 'None', 
+        number: score(sortedHand[sortedHand.length-1].number), 
+        suit: sortedHand[sortedHand.length-1].suit,
+        secondNumber: 0 
+    }
 
     if(checkersResult.pairs == 1){
         ret.number = checkersResult.numbersScore
@@ -68,6 +73,7 @@ function getYaku(hand){
     if(checkersResult.pairs == 2){
         ret.number = checkersResult.numbersScore
         ret.suit = checkersResult.numbersSuit
+        ret.secondNumber = checkersResult.secondNumber
         ret.yaku = 'TwoPair'
     } 
     if(checkersResult.threeCard){
@@ -108,6 +114,7 @@ function numbersCounter(hand) {
                 ret.pairs += 1 
                 if(ret.numbersScore < score(number)){
                     ret.numbersSuit = suits[suits.length-1]
+                    ret.secondNumber = ret.numbersScore
                     ret.numbersScore = score(number)
                 }
                 break
