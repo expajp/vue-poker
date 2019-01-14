@@ -7,6 +7,7 @@ import score from './score.js'
 */
 export default (playersHand) => {
     const yaku = getYaku(playersHand)
+    console.log(yaku)
     return getScoreFromYaku(yaku)
 }
 
@@ -99,7 +100,7 @@ function getYaku(hand){
     return ret
 }
 function numbersCounter(hand) {
-    let ret = { pairs: 0, threeCard: false, fourCard: false, numbersScore: -1, numbersSuit: '' }
+    let ret = { pairs: 0, threeCard: false, fourCard: false, numbersScore: -1, secondNumber: -1, numbersSuit: '' }
     
     const numbers = deepcopyArray(hand).map(card => { return card.number } ).sort()
     const numbersCounter = [...new Set(numbers)]
@@ -116,6 +117,8 @@ function numbersCounter(hand) {
                     ret.numbersSuit = suits[suits.length-1]
                     ret.secondNumber = ret.numbersScore
                     ret.numbersScore = score(number)
+                } else {
+                    ret.secondNumber = score(number)
                 }
                 break
             case 3: 
