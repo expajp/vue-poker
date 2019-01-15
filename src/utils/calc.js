@@ -21,23 +21,23 @@ function getScoreFromYaku(yaku){
 function invertYakuToNumber(yaku){
     switch(yaku){
         case 'OnePair' :
-            return 0 
+            return 1 
         case 'TwoPair' :
-            return 1
-        case 'ThreeCard' :
             return 2
-        case 'Straight' :
+        case 'ThreeCard' :
             return 3
-        case 'Flash' :
+        case 'Straight' :
             return 4
-        case 'FullHouse' :
+        case 'Flash' :
             return 5
-        case 'FourCard' :
+        case 'FullHouse' :
             return 6
-        case 'StraightFlash' :
+        case 'FourCard' :
             return 7
-        case 'RoyalStraightFlash' :
+        case 'StraightFlash' :
             return 8
+        case 'RoyalStraightFlash' :
+            return 9
     }
 }
 
