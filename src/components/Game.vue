@@ -51,6 +51,7 @@ export default {
     computed: {
         resultMessage: function(){
             if(this.showButtons) return ''
+            if(this.playersResult.yaku === 'None' && this.dealersResult.yaku === 'None') return 'Draw'
             if(this.playersResult.comparableStr > this.dealersResult.comparableStr) return 'You Win'
             if(this.playersResult.comparableStr < this.dealersResult.comparableStr) return 'You Lose'
             return 'Error!!'
