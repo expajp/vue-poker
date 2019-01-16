@@ -33,7 +33,7 @@ export default {
             this.hand.push(pick())
         }
         this.hand.forEach(card => { 
-            card.hide = false 
+            card.hide = true
             card.selected = false
         })
         this.hand.sort((a, b) => { return score(a.number)-score(b.number) })
@@ -42,6 +42,7 @@ export default {
     methods: {
         postexec: function(){
             this.result = calc(this.hand)
+            this.hand.forEach(card => { card.hide = false })
             this.$emit('result', this.result)
         }
     }

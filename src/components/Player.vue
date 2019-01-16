@@ -78,9 +78,11 @@ export default {
                 })
                 this.selected.splice(selectedIdx, 1, this.hand[handIdx])
             })
+            this.stand()
         },
         stand: function(){
             this.result = calc(this.hand)
+            this.hand.forEach(card => { card.selected = false })
             this.$emit('stand', this.result)
         }
     }

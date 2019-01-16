@@ -45,7 +45,7 @@ export default {
         postexec: function(dealersResult){
             this.showButtons = false
             this.dealersResult = dealersResult
-            this.mainMessage = `Dealer : ${dealersResult.comparableStr} ${dealersResult.yaku} / Player : ${this.playersResult.comparableStr} ${this.playersResult.yaku}`
+            this.mainMessage = `Dealer : ${dealersResult.yaku} / Player : ${this.playersResult.yaku}`
         },
     },
     computed: {
