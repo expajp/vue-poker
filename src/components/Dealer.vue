@@ -16,7 +16,7 @@
 <script>
 import pick from '../utils/deck.js'
 import calc from '../utils/calc.js'
-import score from '../utils/score.js'
+import sort from '../utils/sort.js'
 import Card from './Card'
 
 export default {
@@ -36,7 +36,7 @@ export default {
             card.hide = true
             card.selected = false
         })
-        this.hand.sort((a, b) => { return score(a.number)-score(b.number) })
+        this.hand.sort((a, b) => { return sort(a, b) })
         this.$on('postexec', this.postexec)
     },
     methods: {

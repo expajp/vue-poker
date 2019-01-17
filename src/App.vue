@@ -9,12 +9,7 @@ import Game from './components/Game'
 
 export default {
   name: 'app',
-  components: { Game },
-  data () {
-    return {
-      msg: 'Hello, World!!'
-    }
-  }
+  components: { Game }
 }
 </script>
 

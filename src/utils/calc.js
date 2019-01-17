@@ -1,4 +1,5 @@
 import score from './score.js'
+import sort from './sort.js'
 
 /*
  Array.prototype.some()
@@ -58,7 +59,7 @@ function invertSuitToNumber(suit){
 
 function getYaku(hand){
     const checkersResult = Object.assign(numbersCounter(hand), flashChecker(hand), straightChecker(hand))
-    const sortedHand = deepcopyArray(hand).sort((a, b) => { return score(a.number) - score(b.number) })
+    const sortedHand = deepcopyArray(hand).sort((a, b) => { return sort(a, b) })
     let ret = { 
         yaku: 'None', 
         number: score(sortedHand[sortedHand.length-1].number), 
