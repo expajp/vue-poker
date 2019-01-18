@@ -38,7 +38,6 @@ export default {
     data() {
         return {
             hand: [],
-            selected: [],
             changed: false,
             result: 0
         }
@@ -51,6 +50,11 @@ export default {
         })
         this.hand.sort((a, b) => { return sort(a, b) })
     },
+    computed: {
+        selected: function(){
+            return this.hand.filter(card => { return card.selected })
+        }
+    },
     methods: {
         // カードを選択したときの処理、Cardコンポーネントから発火させる
         select: function(card){
@@ -59,17 +63,8 @@ export default {
                 // handに入っているのはVueコンポーネントでなくオブジェクトなのでnumberとsuitで一致を取る
                 elm => { return elm.number === card.number && elm.suit === card.suit }
             )
-
             // カードの選択状態を変更
             selectedCard.selected = !card.selected
-            
-            // 変更後の選択状態に応じて、選択済みカードを増減
-            if(card.selected){
-                this.selected.splice(selectedCard, 1)
-            } else {
-                this.selected.push(selectedCard)
-            }
-            
         },
         change: function(){
             if(this.selected.length > 0) this.changed = true
