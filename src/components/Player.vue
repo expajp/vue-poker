@@ -52,17 +52,24 @@ export default {
         this.hand.sort((a, b) => { return sort(a, b) })
     },
     methods: {
+        // カードを選択したときの処理、Cardコンポーネントから発火させる
         select: function(card){
+            // 手札中の選択されたカードを特定
             const selectedCard = this.hand.find(
                 // handに入っているのはVueコンポーネントでなくオブジェクトなのでnumberとsuitで一致を取る
                 elm => { return elm.number === card.number && elm.suit === card.suit }
             )
+
+            // カードの選択状態を変更
+            selectedCard.selected = !card.selected
+            
+            // 変更後の選択状態に応じて、選択済みカードを増減
             if(card.selected){
                 this.selected.splice(selectedCard, 1)
             } else {
                 this.selected.push(selectedCard)
             }
-            selectedCard.selected = !card.selected
+            
         },
         change: function(){
             if(this.selected.length > 0) this.changed = true

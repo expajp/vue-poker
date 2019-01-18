@@ -1,11 +1,11 @@
 <template>
-    <div @click="select" :class="{ 'card': true, 'select': selected }">
+    <div @click="select" :class="{ 'card': true, 'selected': selected }">
         <img :src="image" height="280" />
     </div>
 </template>
 
 <style>
-.select {
+.selected {
     margin-top: -20px;
 }
 </style>
@@ -30,7 +30,7 @@ export default {
             return require(`../assets/card_${filename}.png`)
         },
         class: function(){
-            return { card: true, select: this.selected }
+            return { card: true, selected: this.selected }
         },
     }, 
     methods: {
