@@ -30,6 +30,7 @@ import pick from '../utils/deck.js'
 import calc from '../utils/calc.js'
 import sort from '../utils/sort.js'
 import Card from './Card'
+import isEqualCards from '../utils/isEqualCards.js'
 
 export default {
     name: 'player',
@@ -61,7 +62,7 @@ export default {
             // 手札中の選択されたカードを特定
             const selectedCard = this.hand.find(
                 // handに入っているのはVueコンポーネントでなくオブジェクトなのでnumberとsuitで一致を取る
-                elm => { return elm.number === card.number && elm.suit === card.suit }
+                elm => { return isEqualCards(elm, card) }
             )
             // カードの選択状態を変更
             selectedCard.selected = !card.selected
@@ -69,15 +70,11 @@ export default {
         change: function(){
             if(this.selected.length > 0) this.changed = true
 
-            this.selected.forEach(selected => {
-                const handIdx = this.hand.findIndex(elm => {
-                    return elm.number === selected.number && elm.suit === selected.suit
-                })
+            this.selected.forEach(card => {
+                const handIdx = this.hand.findIndex(elm => { return isEqualCards(elm, card) })
                 this.hand.splice(handIdx, 1, pick(true))
 
-                const selectedIdx = this.selected.findIndex(elm => {
-                    return elm.number === selected.number && elm.suit === selected.suit
-                })
+                const selectedIdx = this.selected.findIndex(elm => { return isEqualCards(elm, card) })
                 this.selected.splice(selectedIdx, 1, this.hand[handIdx])
             })
             this.stand()
