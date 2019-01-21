@@ -32,10 +32,7 @@ export default {
         for(let i=0;i<5;i++){
             this.hand.push(pick())
         }
-        this.hand.forEach(card => { 
-            card.hide = true
-            card.selected = false
-        })
+        this.hand.forEach(card => { card.hide = true })
         this.hand.sort((a, b) => { return sort(a, b) })
         this.$on('postexec', this.postexec)
     },
