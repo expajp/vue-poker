@@ -1,45 +1,25 @@
 import score from './score.js'
 import sort from './sort.js'
 
-/*
- Array.prototype.some()
- 引数に指定された関数に次々に配列の要素を代入し、ひとつでもtrueを返すものがあればtrueを返す
- Rubyで言えば Array#any?
-*/
 export default (playersHand) => {
     const yaku = getYaku(playersHand)
-    console.log(yaku)
     return getScoreFromYaku(yaku)
 }
 
 function getScoreFromYaku(yaku){
-    const yakuScore = invertYakuToNumber(yaku.yaku);
-    const score = yaku.number.toString(16) + yaku.secondNumber.toString(16) + invertSuitToNumber(yaku.suit).toString()
-    
-    return { yaku: yaku.yaku, comparableStr: ('000'.repeat(8)+score+'000'.repeat(yakuScore)).substr(-27) }
-}
-
-function invertYakuToNumber(yaku){
-    switch(yaku){
-        case 'OnePair' :
-            return 1 
-        case 'TwoPair' :
-            return 2
-        case 'ThreeCard' :
-            return 3
-        case 'Straight' :
-            return 4
-        case 'Flash' :
-            return 5
-        case 'FullHouse' :
-            return 6
-        case 'FourCard' :
-            return 7
-        case 'StraightFlash' :
-            return 8
-        case 'RoyalStraightFlash' :
-            return 9
+    const rankForYaku = {
+        'OnePair' : 1, 
+        'TwoPair' : 2, 
+        'ThreeCard' : 3, 
+        'Straight' : 4, 
+        'Flash' : 5, 
+        'FullHouse' : 6, 
+        'FourCard' : 7, 
+        'StraightFlash' : 8, 
+        'RoyalStraightFlash' : 9
     }
+    const score = yaku.number.toString(16) + yaku.secondNumber.toString(16) + invertSuitToNumber(yaku.suit).toString()    
+    return { yaku: yaku.yaku, comparableStr: ('000'.repeat(8)+score+'000'.repeat(rankForYaku[yaku.yaku])).substr(-27) }
 }
 
 function invertSuitToNumber(suit){
