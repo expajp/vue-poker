@@ -39,7 +39,7 @@ function invertSuitToNumber(suit){
 
 function getYaku(hand){
     const checkersResult = Object.assign(numbersCounter(hand), flashChecker(hand), straightChecker(hand))
-    const sortedHand = deepcopyArray(hand).sort((a, b) => { return sort(a, b) })
+    const sortedHand = deepcopyArray(hand).sort((a, b) => sort(a, b))
     let ret = { 
         yaku: 'None', 
         number: score(sortedHand[sortedHand.length-1].number), 
@@ -83,13 +83,13 @@ function getYaku(hand){
 function numbersCounter(hand) {
     let ret = { pairs: 0, threeCard: false, fourCard: false, numbersScore: -1, secondNumber: -1, numbersSuit: '' }
     
-    const numbers = deepcopyArray(hand).map(card => { return card.number } ).sort()
+    const numbers = deepcopyArray(hand).map(card => card.number).sort()
     const numbersCounter = [...new Set(numbers)]
 
     numbersCounter.forEach(number => {
         const filteredCards = deepcopyArray(hand).filter(card => { return card.number === number })
         const count = filteredCards.length
-        const suits = filteredCards.map(card => { return card.suit } ).sort()
+        const suits = filteredCards.map(card => card.suit).sort()
 
         switch(count){
             case 2:
@@ -118,14 +118,14 @@ function numbersCounter(hand) {
 }
 
 function flashChecker(hand) {
-    return { flash: [...new Set(hand.map(card => { return card.suit } ))].length === 1, flashSuit: hand[0].suit }
+    return { flash: [...new Set(hand.map(card => card.suit))].length === 1, flashSuit: hand[0].suit }
 }
 
 function straightChecker(hand) {
-    const sortedHand = hand.sort((a, b) => { return score(a.number)-score(b.number) })
+    const sortedHand = hand.sort((a, b) => score(a.number)-score(b.number))
     const maxIndex = sortedHand.length-1
     const scoreDiff = Math.abs(score(sortedHand[maxIndex].number)-score(sortedHand[0].number))
-    const numbers = [...new Set(deepcopyArray(sortedHand).map(card => { return card.number }))]
+    const numbers = [...new Set(deepcopyArray(sortedHand).map(card => card.number))]
 
     if(scoreDiff === maxIndex && numbers.length == hand.length) return { straight: true, straightSuit: sortedHand[maxIndex].suit }
     return { straight: false, straightSuit: '' }

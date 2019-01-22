@@ -33,7 +33,7 @@ export default {
             this.hand.push(pick())
         }
         this.hand.forEach(card => { card.hide = true })
-        this.hand.sort((a, b) => { return sort(a, b) })
+        this.hand.sort((a, b) => sort(a, b))
         this.$on('postexec', this.postexec)
     },
     methods: {

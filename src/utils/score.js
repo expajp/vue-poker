@@ -1,3 +1,1 @@
-export default n => {
-    return (n+11)%13
-}
+export default n => (n+11)%13

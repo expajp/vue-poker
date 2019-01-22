@@ -49,21 +49,19 @@ export default {
             card.hide = false 
             card.selected = false
         })
-        this.hand.sort((a, b) => { return sort(a, b) })
+        this.hand.sort((a, b) => sort(a, b))
     },
     computed: {
-        selected: function(){
-            return this.hand.filter(card => { return card.selected })
+        selected: function(){ 
+            return this.hand.filter(card => card.selected) 
         }
     },
     methods: {
         // カードを選択したときの処理、Cardコンポーネントから発火させる
         select: function(card){
             // 手札中の選択されたカードを特定
-            const selectedCard = this.hand.find(
-                // handに入っているのはVueコンポーネントでなくオブジェクトなのでnumberとsuitで一致を取る
-                elm => { return isEqualCards(elm, card) }
-            )
+            // handに入っているのはVueコンポーネントでなくオブジェクトなのでnumberとsuitで一致を取る
+            const selectedCard = this.hand.find(elm => isEqualCards(elm, card))
             // カードの選択状態を変更
             selectedCard.selected = !card.selected
         },
@@ -71,10 +69,10 @@ export default {
             if(this.selected.length > 0) this.changed = true
 
             this.selected.forEach(card => {
-                const handIdx = this.hand.findIndex(elm => { return isEqualCards(elm, card) })
+                const handIdx = this.hand.findIndex(elm => isEqualCards(elm, card))
                 this.hand.splice(handIdx, 1, pick(true))
 
-                const selectedIdx = this.selected.findIndex(elm => { return isEqualCards(elm, card) })
+                const selectedIdx = this.selected.findIndex(elm => isEqualCards(elm, card))
                 this.selected.splice(selectedIdx, 1, this.hand[handIdx])
             })
             this.stand()
