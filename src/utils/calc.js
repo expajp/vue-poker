@@ -1,5 +1,5 @@
 import score from './score.js'
-import sort from './sort.js'
+import compareCardsForAscendingRangeOfScore from './compareCardsForAscendingRangeOfScore.js'
 
 export default (playersHand) => {
     const yaku = getYaku(playersHand)
@@ -18,28 +18,20 @@ function getScoreFromYaku(yaku){
         'StraightFlash' : 8, 
         'RoyalStraightFlash' : 9
     }
-    const score = yaku.number.toString(16) + yaku.secondNumber.toString(16) + invertSuitToNumber(yaku.suit).toString()    
-    return { yaku: yaku.yaku, comparableStr: ('000'.repeat(8)+score+'000'.repeat(rankForYaku[yaku.yaku])).substr(-27) }
-}
-
-function invertSuitToNumber(suit){
-    switch(suit){
-        case 'clover' :
-            return 1;   
-        case 'diamond' :
-            return 2;   
-        case 'heart' :
-            return 3;   
-        case 'spade' :
-            return 4;
-        default: 
-            return 0;
+    const rankForSuit = {
+        'none' : 0,
+        'clover' : 1,    
+        'diamond' : 2,    
+        'heart' : 3,    
+        'spade' : 4
     }
+    const score = yaku.number.toString(16) + yaku.secondNumber.toString(16) + rankForSuit[yaku.suit]
+    return { yaku: yaku.yaku, comparableStr: ('000'.repeat(8)+score+'000'.repeat(rankForYaku[yaku.yaku])).substr(-27) }
 }
 
 function getYaku(hand){
     const checkersResult = Object.assign(numbersCounter(hand), flashChecker(hand), straightChecker(hand))
-    const sortedHand = deepcopyArray(hand).sort((a, b) => sort(a, b))
+    const sortedHand = deepcopyArray(hand).sort((a, b) => compareCardsForAscendingRangeOfScore(a, b))
     let ret = { 
         yaku: 'None', 
         number: score(sortedHand[sortedHand.length-1].number), 
