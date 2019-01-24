@@ -74,16 +74,18 @@ function getYaku(hand){
 }
 function numbersCounter(hand) {
     let ret = { pairs: 0, threeCard: false, fourCard: false, numbersScore: -1, secondNumber: -1, numbersSuit: '' }
-    
-    const numbers = deepcopyArray(hand).map(card => card.number).sort()
-    const numbersCounter = [...new Set(numbers)]
 
-    numbersCounter.forEach(number => {
-        const filteredCards = deepcopyArray(hand).filter(card => { return card.number === number })
-        const count = filteredCards.length
+    // TODO 
+    // ここをhand - numbersIteratorにすれば、2個以上ある要素のみに絞ってイテレーション可能
+    // 空ならブタ、1種類なら数でワンペア・スリーカード・フォーカードが判別可能
+    // 2種類ならツーペアかフルハウスなので個別に判定ロジック組めば良い
+    const numbersIterator = [...new Set(deepcopyArray(hand).map(card => card.number))]
+
+    numbersIterator.forEach(number => {
+        const filteredCards = deepcopyArray(hand).filter(card => card.number === number)
         const suits = filteredCards.map(card => card.suit).sort()
 
-        switch(count){
+        switch(filteredCards.length){
             case 2:
                 ret.pairs += 1 
                 if(ret.numbersScore < score(number)){
@@ -100,7 +102,6 @@ function numbersCounter(hand) {
                 ret.numbersScore = score(number); break
             case 4: 
                 ret.fourCard = true
-                ret.numbersSuit = ''
                 ret.numbersScore = score(number); break
             default: 
                 break
