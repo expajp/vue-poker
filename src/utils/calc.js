@@ -39,12 +39,12 @@ function getYaku(hand){
         secondNumber: 0 
     }
 
-    if(checkersResult.pairs == 1){
+    if(checkersResult.pairs === 1){
         ret.number = checkersResult.numbersScore
         ret.suit = checkersResult.numbersSuit
         ret.yaku = 'OnePair'
     }
-    if(checkersResult.pairs == 2){
+    if(checkersResult.pairs === 2){
         ret.number = checkersResult.numbersScore
         ret.suit = checkersResult.numbersSuit
         ret.secondNumber = checkersResult.secondNumber
@@ -60,7 +60,7 @@ function getYaku(hand){
         ret.suit = checkersResult.flashSuit
         ret.yaku = 'Flash'
     }
-    if(checkersResult.pairs == 1 && checkersResult.threeCard) ret.yaku = 'FullHouse'
+    if(checkersResult.pairs === 1 && checkersResult.threeCard) ret.yaku = 'FullHouse'
     if(checkersResult.fourCard) ret.yaku = 'FourCard'
     if(checkersResult.straight && checkersResult.flash){
         ret.suit = checkersResult.straightSuit
@@ -119,7 +119,7 @@ function straightChecker(hand) {
     const scoreDiff = Math.abs(score(sortedHand[maxIndex].number)-score(sortedHand[0].number))
     const numbers = [...new Set(deepcopyArray(sortedHand).map(card => card.number))]
 
-    if(scoreDiff === maxIndex && numbers.length == hand.length) return { straight: true, straightSuit: sortedHand[maxIndex].suit }
+    if(scoreDiff === maxIndex && numbers.length === hand.length) return { straight: true, straightSuit: sortedHand[maxIndex].suit }
     return { straight: false, straightSuit: '' }
 }
 
