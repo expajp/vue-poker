@@ -75,38 +75,46 @@ function getYaku(hand){
 function numbersCounter(hand) {
     let ret = { pairs: 0, threeCard: false, fourCard: false, numbersScore: -1, secondNumber: -1, numbersSuit: '' }
 
-    // TODO 
-    // ここをhand - numbersIteratorにすれば、2個以上ある要素のみに絞ってイテレーション可能
+    const numbersSet = [...new Set(deepcopyArray(hand).map(card => card.number))]
+
     // 空ならブタ、1種類なら数でワンペア・スリーカード・フォーカードが判別可能
     // 2種類ならツーペアかフルハウスなので個別に判定ロジック組めば良い
-    const numbersIterator = [...new Set(deepcopyArray(hand).map(card => card.number))]
+    const doubledCards = getDifferenceArrays(hand, numbersSet)
 
-    numbersIterator.forEach(number => {
-        const filteredCards = deepcopyArray(hand).filter(card => card.number === number)
-        const suits = filteredCards.map(card => card.suit).sort()
+    // ブタの判別
+    if(doubledCards.length == 0) return ret 
 
-        switch(filteredCards.length){
-            case 2:
-                ret.pairs += 1 
-                if(ret.numbersScore < score(number)){
-                    ret.numbersSuit = suits[suits.length-1]
-                    ret.secondNumber = ret.numbersScore
-                    ret.numbersScore = score(number)
-                } else {
-                    ret.secondNumber = score(number)
-                }
-                break
-            case 3: 
-                ret.threeCard = true
-                ret.numbersSuit = ''
-                ret.numbersScore = score(number); break
-            case 4: 
-                ret.fourCard = true
-                ret.numbersScore = score(number); break
-            default: 
-                break
+    // ワンペア、スリーカード、フォーカードの判別
+    const doubledCardsSet = [...new Set(deepcopyArray(doubledCards).map(card => card.number))]
+    if(doubledCardsSet.length == 1) {
+        ret.numbersScore = score(doubledCardsSet[0])
+
+        if(doubledCards.length == 1) {
+            // ワンペア
+            ret.pairs = 1
+            // TODO スートどうしよう
+        } else if (doubledCards.length == 2) {
+            // スリーカード
+            ret.threeCard = true
+            ret.numbersSuit = ''
+        } else if (doubledCards.length == 3) {
+            // フォーカード
+            ret.fourCard = true
+            ret.numbersSuit = ''
         }
-    })
+    } else if (doubledCardsSet.length == 2) {
+        if (doubledCards.length == 2) {
+            // ツーペア
+            ret.pairs = 2
+            // TODO 2番目のペアの数字とスートどうしよう            
+        } else if (doubledCards.length == 3) {
+            // フルハウス
+            ret.pairs = 1
+            ret.threeCard = true
+            ret.numbersSuit = ''
+            // TODO 数字どうしよう     
+        }
+    }
     return ret
 }
 
@@ -126,4 +134,8 @@ function straightChecker(hand) {
 
 function deepcopyArray(arr){
     return JSON.parse(JSON.stringify(arr))
+}
+
+function getDifferenceArrays(arr1, arr2){
+    return arr1.concat(arr2).filter(item => !arr1.includes(item) || !arr2.includes(item))
 }
