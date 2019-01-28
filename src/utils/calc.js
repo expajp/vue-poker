@@ -112,7 +112,7 @@ function numbersCounter(hand) {
             ret.pairs = 1
             ret.threeCard = true
             ret.numbersSuit = ''
-            // TODO 数字どうしよう     
+            // TODO 数字どうしよう
         }
     }
     return ret
@@ -124,11 +124,10 @@ function flashChecker(hand) {
 
 function straightChecker(hand) {
     const sortedHand = hand.sort((a, b) => score(a.number)-score(b.number))
-    const maxIndex = sortedHand.length-1
-    const scoreDiff = Math.abs(score(sortedHand[maxIndex].number)-score(sortedHand[0].number))
+    const scoreDiff = Math.abs(score(sortedHand[4].number)-score(sortedHand[0].number))
     const numbers = [...new Set(deepcopyArray(sortedHand).map(card => card.number))]
 
-    if(scoreDiff === maxIndex && numbers.length === hand.length) return { straight: true, straightSuit: sortedHand[maxIndex].suit }
+    if(scoreDiff === 4 && numbers.length === 5) return { straight: true, straightSuit: sortedHand[maxIndex].suit }
     return { straight: false, straightSuit: '' }
 }
 
