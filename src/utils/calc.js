@@ -75,17 +75,22 @@ function getYaku(hand){
 function numbersCounter(hand) {
     let ret = { pairs: 0, threeCard: false, fourCard: false, numbersScore: -1, secondNumber: -1, numbersSuit: '' }
 
-    const numbersSet = [...new Set(deepcopyArray(hand).map(card => card.number))]
+    const numbersArray = deepcopyArray(hand).map(card => card.number)
+    console.log(numbersArray)
+    const numbersSet = [...new Set(deepcopyArray(numbersArray))]
+    console.log(numbersSet)
 
     // 空ならブタ、1種類なら数でワンペア・スリーカード・フォーカードが判別可能
     // 2種類ならツーペアかフルハウスなので個別に判定ロジック組めば良い
-    const doubledCards = getDifferenceArrays(hand, numbersSet)
+    const doubledCards = getDifferenceArrays(numbersArray, numbersSet)
+    console.log(doubledCards)
 
     // ブタの判別
     if(doubledCards.length == 0) return ret 
 
     // ワンペア、スリーカード、フォーカードの判別
-    const doubledCardsSet = [...new Set(deepcopyArray(doubledCards).map(card => card.number))]
+    const doubledCardsSet = [...new Set(deepcopyArray(doubledCards))]
+    console.log(doubledCardsSet)
     if(doubledCardsSet.length == 1) {
         ret.numbersScore = score(doubledCardsSet[0])
 
@@ -136,5 +141,12 @@ function deepcopyArray(arr){
 }
 
 function getDifferenceArrays(arr1, arr2){
-    return arr1.concat(arr2).filter(item => !arr1.includes(item) || !arr2.includes(item))
+    let jointed = arr1.concat(arr2)
+    deepcopyArray(jointed).forEach(item => {
+        console.log(item)
+        console.log(jointed.indexOf(item))
+        jointed.splice(jointed.indexOf(item), 1)
+    })
+    console.log(jointed)
+    return jointed.filter(item => !arr1.includes(item) || !arr2.includes(item))
 }
