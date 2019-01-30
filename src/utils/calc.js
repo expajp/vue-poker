@@ -141,12 +141,7 @@ function deepcopyArray(arr){
 }
 
 function getDifferenceArrays(arr1, arr2){
-    let jointed = arr1.concat(arr2)
-    deepcopyArray(jointed).forEach(item => {
-        console.log(item)
-        console.log(jointed.indexOf(item))
-        jointed.splice(jointed.indexOf(item), 1)
-    })
-    console.log(jointed)
-    return jointed.filter(item => !arr1.includes(item) || !arr2.includes(item))
+    let ret = deepcopyArray(arr1)
+    arr2.forEach(item => { ret.splice(ret.indexOf(item), 1) })
+    return ret
 }
