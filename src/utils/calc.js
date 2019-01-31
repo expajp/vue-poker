@@ -76,21 +76,17 @@ function numbersCounter(hand) {
     let ret = { pairs: 0, threeCard: false, fourCard: false, numbersScore: -1, secondNumber: -1, numbersSuit: '' }
 
     const numbersArray = deepcopyArray(hand).map(card => card.number)
-    console.log(numbersArray)
     const numbersSet = [...new Set(deepcopyArray(numbersArray))]
-    console.log(numbersSet)
 
     // 空ならブタ、1種類なら数でワンペア・スリーカード・フォーカードが判別可能
     // 2種類ならツーペアかフルハウスなので個別に判定ロジック組めば良い
     const doubledCards = getDifferenceArrays(numbersArray, numbersSet)
-    console.log(doubledCards)
 
     // ブタの判別
     if(doubledCards.length == 0) return ret 
 
     // ワンペア、スリーカード、フォーカードの判別
     const doubledCardsSet = [...new Set(deepcopyArray(doubledCards))]
-    console.log(doubledCardsSet)
     if(doubledCardsSet.length == 1) {
         ret.numbersScore = score(doubledCardsSet[0])
 
