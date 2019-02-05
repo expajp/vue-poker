@@ -3,6 +3,7 @@ import compareCardsForAscendingRangeOfScore from './compareCardsForAscendingRang
 
 export default (playersHand) => {
     const yaku = getYaku(playersHand)
+    console.log(yaku)
     return getScoreFromYaku(yaku)
 }
 
@@ -89,11 +90,15 @@ function numbersCounter(hand) {
     const doubledCardsSet = [...new Set(deepcopyArray(doubledCards))]
     if(doubledCardsSet.length == 1) {
         ret.numbersScore = score(doubledCardsSet[0])
+        const suitsArray = deepcopyArray(hand)
+                            .filter(card => card.number === doubledCardsSet[0])
+                            .map(card => card.suit)
+                            .sort()
 
         if(doubledCards.length == 1) {
             // ワンペア
             ret.pairs = 1
-            // TODO スートどうしよう
+            ret.numbersSuit = suitsArray[suitsArray.length-1]
         } else if (doubledCards.length == 2) {
             // スリーカード
             ret.threeCard = true
