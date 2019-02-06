@@ -118,7 +118,9 @@ function numbersCounter(hand) {
             ret.pairs = 1
             ret.threeCard = true
             ret.numbersSuit = ''
-            // TODO 数字どうしよう
+
+            const tripledNumber = getDifferenceArrays(doubledCards, doubledCardsSet)[0]
+            ret.numbersScore = score(tripledNumber)
         }
     }
     return ret
