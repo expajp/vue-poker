@@ -3,7 +3,6 @@ import compareCardsForAscendingRangeOfScore from './compareCardsForAscendingRang
 
 export default (playersHand) => {
     const yaku = getYaku(playersHand)
-    console.log(yaku)
     return getScoreFromYaku(yaku)
 }
 
@@ -48,7 +47,7 @@ function getYaku(hand){
     if(checkersResult.pairs === 2){
         ret.number = checkersResult.numbersScore
         ret.suit = checkersResult.numbersSuit
-        ret.secondNumber = checkersResult.secondNumber
+        ret.secondNumber = checkersResult.secondNumbersScore
         ret.yaku = 'TwoPair'
     } 
     if(checkersResult.threeCard){
@@ -74,7 +73,7 @@ function getYaku(hand){
     return ret
 }
 function numbersCounter(hand) {
-    let ret = { pairs: 0, threeCard: false, fourCard: false, numbersScore: -1, secondNumber: -1, numbersSuit: '' }
+    let ret = { pairs: 0, threeCard: false, fourCard: false, numbersScore: -1, secondNumbersScore: -1, numbersSuit: '' }
 
     const numbersArray = deepcopyArray(hand).map(card => card.number)
     const numbersSet = [...new Set(deepcopyArray(numbersArray))]
@@ -112,7 +111,15 @@ function numbersCounter(hand) {
         if (doubledCards.length == 2) {
             // ツーペア
             ret.pairs = 2
-            // TODO 2番目のペアの数字とスートどうしよう            
+
+            const twoPairedNumbers = doubledCards.sort((a, b) => compareCardsForAscendingRangeOfScore(a, b))
+            ret.numbersScore = score(twoPairedNumbers[1])
+            ret.secondNumbersScore = score(twoPairedNumbers[0])
+            
+            ret.numbersSuit = deepcopyArray(hand)
+                                .filter(card => card.number == twoPairedNumbers[1] )
+                                .sort()[1]
+                                .suit
         } else if (doubledCards.length == 3) {
             // フルハウス
             ret.pairs = 1
