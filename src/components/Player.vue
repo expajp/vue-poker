@@ -44,12 +44,7 @@ export default {
         }
     },
     created: function(){
-        // for(let i=0;i<5;i++) this.hand.push(pick())
-        this.hand.push( { suit: 'club',    number: 3 } )
-        this.hand.push( { suit: 'heart',   number: 3 } )
-        this.hand.push( { suit: 'club',    number: 1 } )
-        this.hand.push( { suit: 'spade',   number: 1 } )
-        this.hand.push( { suit: 'diamond', number: 13 } )
+        for(let i=0;i<5;i++) this.hand.push(pick())
         this.hand.forEach(card => { 
             card.hide = false 
             card.selected = false
@@ -64,10 +59,7 @@ export default {
     methods: {
         // カードを選択したときの処理、Cardコンポーネントから発火させる
         select: function(card){
-            // 手札中の選択されたカードを特定
-            // handに入っているのはVueコンポーネントでなくオブジェクトなのでnumberとsuitで一致を取る
             const selectedCard = this.hand.find(elm => isEqualCards(elm, card))
-            // カードの選択状態を変更
             selectedCard.selected = !card.selected
         },
         change: function(){
