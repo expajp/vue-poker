@@ -80,39 +80,41 @@ function numbersCounter(hand) {
 
     // 空ならブタ、1種類なら数でワンペア・スリーカード・フォーカードが判別可能
     // 2種類ならツーペアかフルハウスなので個別に判定ロジック組めば良い
-    const doubledCards = getDifferenceArrays(numbersArray, numbersSet)
+    const doubledNumbers = getDifferenceArrays(numbersArray, numbersSet)
 
     // ブタの判別
-    if(doubledCards.length == 0) return ret 
+    if(doubledNumbers.length == 0) return ret 
 
     // ワンペア、スリーカード、フォーカードの判別
-    const doubledCardsSet = [...new Set(deepcopyArray(doubledCards))]
-    if(doubledCardsSet.length == 1) {
-        ret.numbersScore = score(doubledCardsSet[0])
+    const doubledNumbersSet = [...new Set(deepcopyArray(doubledNumbers))]
+    if(doubledNumbersSet.length == 1) {
+        ret.numbersScore = score(doubledNumbersSet[0])
         const suitsArray = deepcopyArray(hand)
-                            .filter(card => card.number === doubledCardsSet[0])
+                            .filter(card => card.number === doubledNumbersSet[0])
                             .map(card => card.suit)
                             .sort()
 
-        if(doubledCards.length == 1) {
+        if(doubledNumbers.length == 1) {
             // ワンペア
             ret.pairs = 1
             ret.numbersSuit = suitsArray[suitsArray.length-1]
-        } else if (doubledCards.length == 2) {
+        } else if (doubledNumbers.length == 2) {
             // スリーカード
             ret.threeCard = true
             ret.numbersSuit = ''
-        } else if (doubledCards.length == 3) {
+        } else if (doubledNumbers.length == 3) {
             // フォーカード
             ret.fourCard = true
             ret.numbersSuit = ''
         }
-    } else if (doubledCardsSet.length == 2) {
-        if (doubledCards.length == 2) {
+
+    // ツーペア、フルハウスの判別
+    } else if (doubledNumbersSet.length == 2) {
+        if (doubledNumbers.length == 2) {
             // ツーペア
             ret.pairs = 2
 
-            const twoPairedNumbers = doubledCards.sort((a, b) => compareCardsForAscendingRangeOfScore(a, b))
+            const twoPairedNumbers = doubledNumbers.sort((a, b) => compareCardsForAscendingRangeOfScore(a, b))
             ret.numbersScore = score(twoPairedNumbers[1])
             ret.secondNumbersScore = score(twoPairedNumbers[0])
             
@@ -120,13 +122,13 @@ function numbersCounter(hand) {
                                 .filter(card => card.number == twoPairedNumbers[1] )
                                 .sort()[1]
                                 .suit
-        } else if (doubledCards.length == 3) {
+        } else if (doubledNumbers.length == 3) {
             // フルハウス
             ret.pairs = 1
             ret.threeCard = true
             ret.numbersSuit = ''
 
-            const tripledNumber = getDifferenceArrays(doubledCards, doubledCardsSet)[0]
+            const tripledNumber = getDifferenceArrays(doubledNumbers, doubledNumbersSet)[0]
             ret.numbersScore = score(tripledNumber)
         }
     }
