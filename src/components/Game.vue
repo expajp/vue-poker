@@ -31,7 +31,7 @@ export default {
     components: { Dealer, Player },
     data() {
         return {
-            mainMessage: 'Welcome to Black Jack',
+            mainMessage: 'Welcome to Poker',
             playersResult: 0,
             dealersResult: 0,
             showButtons: true
