@@ -27,7 +27,7 @@
 
 <script>
 import pick from '../utils/deck.js'
-import calc from '../utils/calc.js'
+import getJudgingObject from '../utils/judgingObjectFactory.js'
 import compareCardsForAscendingRangeOfScore from '../utils/compareCardsForAscendingRangeOfScore.js'
 import Card from './Card'
 import isEqualCards from '../utils/isEqualCards.js'
@@ -75,7 +75,7 @@ export default {
             this.stand()
         },
         stand: function(){
-            this.result = calc(this.hand)
+            this.result = getJudgingObject(this.hand)
             this.hand.forEach(card => { card.selected = false })
             this.$emit('stand', this.result)
         }

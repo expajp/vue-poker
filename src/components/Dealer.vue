@@ -15,7 +15,7 @@
 
 <script>
 import pick from '../utils/deck.js'
-import calc from '../utils/calc.js'
+import getJudgingObject from '../utils/judgingObjectFactory.js'
 import compareCardsForAscendingRangeOfScore from '../utils/compareCardsForAscendingRangeOfScore.js'
 import Card from './Card'
 
@@ -38,7 +38,7 @@ export default {
     },
     methods: {
         postexec: function(){
-            this.result = calc(this.hand)
+            this.result = getJudgingObject(this.hand)
             this.hand.forEach(card => { card.hide = false })
             this.$emit('result', this.result)
         }
