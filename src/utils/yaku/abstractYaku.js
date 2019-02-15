@@ -1,4 +1,4 @@
-// abstractYaku
+// AbstractYaku
 export default class {
     constructor(hand){
         
