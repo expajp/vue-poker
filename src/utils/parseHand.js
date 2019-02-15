@@ -1,7 +1,7 @@
 import score from './score.js'
 import compareCardsForAscendingRangeOfScore from './compareCardsForAscendingRangeOfScore.js'
 
-function parseHand(hand){
+export default (hand) => {
     return Object.assign(numbersCounter(hand), flashChecker(hand), straightChecker(hand))
 }
 
