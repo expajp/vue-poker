@@ -1,5 +1,6 @@
 import score from './score.js'
 import compareCardsForAscendingRangeOfScore from './compareCardsForAscendingRangeOfScore.js'
+import deepcopyArray from './deepcopyArray.js'
 
 export default (hand) => {
     return Object.assign(numbersCounter(hand), flashChecker(hand), straightChecker(hand))
@@ -79,10 +80,6 @@ function straightChecker(hand) {
 
     if(scoreDiff === 4 && numbers.length === 5) return { straight: true, straightSuit: sortedHand[maxIndex].suit }
     return { straight: false, straightSuit: '' }
-}
-
-function deepcopyArray(arr){
-    return JSON.parse(JSON.stringify(arr))
 }
 
 function getDifferenceArrays(arr1, arr2){
