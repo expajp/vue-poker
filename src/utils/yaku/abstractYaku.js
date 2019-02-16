@@ -13,13 +13,13 @@ export default class {
         throw new Error('getYakuName()を定義してください')
     }
     // 勝敗判定に使う数字を返す
-    getNumber(){
-        throw new Error('getNumber()を定義してください')
+    getScore(){
+        throw new Error('getScore()を定義してください')
     }
     // 勝敗判定に使う2つめの数字を返す
     // ツーペア以外では定義しない
-    getSecondNumber(){
-        throw new Error('getSecondNumber()を定義してください')
+    getSecondScore(){
+        throw new Error('getSecondScore()を定義してください')
     }
     // 勝敗判定に使うスートを返す
     getSuit(){
