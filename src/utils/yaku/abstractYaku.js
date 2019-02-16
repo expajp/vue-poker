@@ -1,7 +1,7 @@
 // AbstractYaku
 export default class {
     constructor(hand){
-        
+        this.hand = hand
     }
 
     // 役のランクを返す
