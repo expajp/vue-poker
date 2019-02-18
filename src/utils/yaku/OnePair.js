@@ -1,11 +1,17 @@
 import AbstractYaku from './AbstractYaku.js'
 import compareCardsForAscendingRangeOfScore from '../compareCardsForAscendingRangeOfScore.js';
 import deepcopyArray from '../deepcopyArray.js'
+import getScore from '../score.js'
+import getDifferenceArrays from '../getDifferenceArrays.js'
 
 // OnePairクラス
 export default class extends AbstractYaku {
     constructor(hand){
         super(hand)
+
+        const numbersArray = deepcopyArray(hand).map(card => card.number)
+        const numbersSet = [...new Set(deepcopyArray(numbersArray))]
+        this.pairedNumber = getDifferenceArrays(numbersArray, numbersSet)
     }
 
     // 役のランクを返す
@@ -18,11 +24,7 @@ export default class extends AbstractYaku {
     }
     // 勝敗判定に使う数字を返す
     getScore(){
-        if(this.number === undefined) {
-            const sortedHand = deepcopyArray(this.hand).sort((a, b) => compareCardsForAscendingRangeOfScore)
-            this.number = sortedHand[sortedHand.length-1].number
-        }
-        return this.number
+        return getScore(this.pairedNumber)
     }
     // 勝敗判定に使う2つめの数字を返す
     // ツーペア以外では定義しない
