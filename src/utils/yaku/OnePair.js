@@ -33,6 +33,10 @@ export default class extends AbstractYaku {
     }
     // 勝敗判定に使うスートを返す
     getSuit(){
-        throw new Error('getSuit()を定義してください')
+        const pairedSuits = deepcopyArray(this.hand)
+            .filter(card => { return card.number === this.pairedNumber })
+            .map(card => card.suit)
+            .sort()
+        return pairedSuits[pairedSuits.length-1]
     }
 }
