@@ -1,5 +1,4 @@
 import AbstractYaku from './AbstractYaku.js'
-import compareCardsForAscendingRangeOfScore from '../compareCardsForAscendingRangeOfScore.js';
 import deepcopyArray from '../deepcopyArray.js'
 import getScore from '../score.js'
 import getDifferenceArrays from '../getDifferenceArrays.js'
