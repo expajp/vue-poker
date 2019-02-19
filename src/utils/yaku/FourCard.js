@@ -3,7 +3,7 @@ import deepcopyArray from '../deepcopyArray.js'
 import getScore from '../score.js'
 import getDifferenceArrays from '../getDifferenceArrays.js'
 
-// ThreeCardクラス
+// FourCardクラス
 export default class extends AbstractYaku {
     constructor(hand){
         super(hand)
