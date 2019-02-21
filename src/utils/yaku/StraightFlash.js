@@ -8,16 +8,16 @@ export default class {
         super(hand)
         const handSortedByScore = deepcopyArray(hand).sort((a, b) => compareCardsForAscendingRangeOfScore(a, b))
         this.maxScoredNumber = handSortedByScore[4].number
-        this.maxScoredNumbersSuit = handSortedByScore[4].suit
+        this.suit = handSortedByScore[4].suit
     }
 
     // 役のランクを返す
     getYakuRank(){
-        return 4
+        return 8
     }
     // 役の名前を返す
     getYakuName(){
-        return 'Straight'
+        return 'StraightFlash'
     }
     // 勝敗判定に使う数字を返す
     getScore(){
