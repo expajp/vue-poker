@@ -2,7 +2,7 @@ import deepcopyArray from "../deepcopyArray";
 import compareCardsForAscendingRangeOfScore from "../compareCardsForAscendingRangeOfScore";
 import getScore from '../score.js'
 
-// Straightクラス
+// StraightFlashクラス
 export default class {
     constructor(hand){
         super(hand)
@@ -25,6 +25,6 @@ export default class {
     }
     // 勝敗判定に使うスートを返す
     getSuit(){
-        return this.maxScoredNumbersSuit
+        return this.suit
     }
 }
