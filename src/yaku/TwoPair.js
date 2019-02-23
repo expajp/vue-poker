@@ -3,6 +3,7 @@ import deepcopyArray from '../utils/deepcopyArray.js'
 import getScore from '../utils/getScore.js'
 import getDifferenceArrays from '../utils/getDifferenceArrays.js'
 import cmpCardsByScoreAsc from '../utils/cmpCardsByScoreAsc.js'
+import getUniqueArray from '../utils/getUniqueArray.js';
 
 // TwoPairクラス
 export class TwoPair extends AbstractYaku {
@@ -10,7 +11,7 @@ export class TwoPair extends AbstractYaku {
         super(hand)
 
         const numbersArray = deepcopyArray(hand).map(card => card.number)
-        const numbersSet = [...new Set(deepcopyArray(numbersArray))]
+        const numbersSet = getUniqueArray(numbersArray)
 
         const doubledNumbers = getDifferenceArrays(numbersArray, numbersSet)
         const twoPairedNumbers = doubledNumbers.sort((a, b) => cmpCardsByScoreAsc(a, b))

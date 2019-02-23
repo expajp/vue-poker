@@ -2,6 +2,7 @@ import AbstractYaku from './AbstractYaku.js'
 import deepcopyArray from '../utils/deepcopyArray.js'
 import getScore from '../utils/getScore.js'
 import getDifferenceArrays from '../utils/getDifferenceArrays.js'
+import getUniqueArray from '../utils/getUniqueArray.js';
 
 // FourCardクラス
 export class FourCard extends AbstractYaku {
@@ -9,7 +10,7 @@ export class FourCard extends AbstractYaku {
         super(hand)
 
         const numbersArray = deepcopyArray(hand).map(card => card.number)
-        const numbersSet = [...new Set(deepcopyArray(numbersArray))]
+        const numbersSet = getUniqueArray(numbersArray)
         this.quadrupledNumber = getDifferenceArrays(numbersArray, numbersSet)[0]
     }
 

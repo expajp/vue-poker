@@ -2,6 +2,7 @@ import AbstractYaku from './AbstractYaku.js'
 import deepcopyArray from '../utils/deepcopyArray.js'
 import getScore from '../utils/getScore.js'
 import getDifferenceArrays from '../utils/getDifferenceArrays.js'
+import getUniqueArray from '../utils/getUniqueArray.js';
 
 // FullHouseクラス
 export class FullHouse extends AbstractYaku {
@@ -9,9 +10,9 @@ export class FullHouse extends AbstractYaku {
         super(hand)
 
         const numbersArray = deepcopyArray(hand).map(card => card.number)
-        const numbersSet = [...new Set(deepcopyArray(numbersArray))]
+        const numbersSet = getUniqueArray(numbersArray)
         const doubledNumbers = getDifferenceArrays(numbersArray, numbersSet)
-        const doubledNumbersSet = [...new Set(deepcopyArray(doubledNumbers))]
+        const doubledNumbersSet = getUniqueArray(doubledNumbers)
         
         this.tripledNumber = getDifferenceArrays(doubledNumbers, doubledNumbersSet)[0]
     }

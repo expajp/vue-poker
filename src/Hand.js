@@ -2,6 +2,7 @@ import getScore from './utils/getScore.js'
 import cmpCardsByScoreAsc from './utils/cmpCardsByScoreAsc.js'
 import deepcopyArray from './utils/deepcopyArray.js'
 import getDifferenceArrays from './utils/getDifferenceArrays.js'
+import getUniqueArray from './utils/getUniqueArray.js';
 
 export class Hand {
     constructor(arr){
@@ -9,13 +10,13 @@ export class Hand {
         this.cards = arr
         
         this.numbersArray = deepcopyArray(this.cards).map(card => card.number)
-        const numbersSet = [...new Set(deepcopyArray(this.numbersArray))]
+        const numbersSet = getUniqueArray(this.numbersArray)
 
         // 重複している数字のみ、かつ多重度が1つ減ったもの
         this.doubledNumbers = getDifferenceArrays(this.numbersArray, numbersSet)
 
         // 重複している数字
-        this.doubledNumbersSet = [...new Set(deepcopyArray(this.doubledNumbers))]
+        this.doubledNumbersSet = getUniqueArray(this.doubledNumbers)
     }
 
     getMaxScore(){
@@ -23,13 +24,13 @@ export class Hand {
     }
 
     isFlash(){
-        return [...new Set(this.cards.map(card => card.suit))].length === 1
+        return getUniqueArray(this.cards.map(card => card.suit)).length === 1
     }
 
     isStraight(){
         const sortedHand = deepcopyArray(this.cards).sort((a, b) => cmpCardsByScoreAsc(a, b))
         const scoreDiff = Math.abs(getScore(sortedHand[4].number)-getScore(sortedHand[0].number))
-        const numbers = [...new Set(deepcopyArray(sortedHand).map(card => card.number))]
+        const numbers = getUniqueArray(deepcopyArray(sortedHand).map(card => card.number))
 
         return scoreDiff === 4 && numbers.length === 5
     }
