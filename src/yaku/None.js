@@ -1,4 +1,4 @@
-import AbstractYaku from "./AbstractYaku";
+import AbstractYaku from './AbstractYaku'
 
 // Noneクラス（ブタ）
 export class None extends AbstractYaku {

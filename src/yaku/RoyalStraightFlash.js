@@ -1,4 +1,4 @@
-import getScore from '../getScore.js'
+import getScore from '../utils/getScore.js'
 import AbstractYaku from './AbstractYaku.js';
 
 // RoyalStraightFlashクラス

@@ -1,7 +1,7 @@
-import getScore from './getScore.js'
-import cmpCardsByScoreAsc from './cmpCardsByScoreAsc.js'
-import deepcopyArray from './deepcopyArray.js'
-import getDifferenceArrays from './getDifferenceArrays.js'
+import getScore from './utils/getScore.js'
+import cmpCardsByScoreAsc from './utils/cmpCardsByScoreAsc.js'
+import deepcopyArray from './utils/deepcopyArray.js'
+import getDifferenceArrays from './utils/getDifferenceArrays.js'
 
 export class Hand {
     constructor(arr){

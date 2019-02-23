@@ -1,8 +1,8 @@
 import AbstractYaku from './AbstractYaku.js'
-import deepcopyArray from '../deepcopyArray.js'
-import getScore from '../getScore.js'
-import getDifferenceArrays from '../getDifferenceArrays.js'
-import cmpCardsByScoreAsc from '../cmpCardsByScoreAsc.js'
+import deepcopyArray from '../utils/deepcopyArray.js'
+import getScore from '../utils/getScore.js'
+import getDifferenceArrays from '../utils/getDifferenceArrays.js'
+import cmpCardsByScoreAsc from '../utils/cmpCardsByScoreAsc.js'
 
 // TwoPairクラス
 export class TwoPair extends AbstractYaku {

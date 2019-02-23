@@ -1,28 +1,28 @@
 import AbstractYaku from './AbstractYaku.js'
-import deepcopyArray from '../deepcopyArray.js'
-import getScore from '../getScore.js'
-import getDifferenceArrays from '../getDifferenceArrays.js'
+import deepcopyArray from '../utils/deepcopyArray.js'
+import getScore from '../utils/getScore.js'
+import getDifferenceArrays from '../utils/getDifferenceArrays.js'
 
-// ThreeCardクラス
-export class ThreeCard extends AbstractYaku {
+// FourCardクラス
+export class FourCard extends AbstractYaku {
     constructor(hand){
         super(hand)
 
         const numbersArray = deepcopyArray(hand).map(card => card.number)
         const numbersSet = [...new Set(deepcopyArray(numbersArray))]
-        this.tripledNumber = getDifferenceArrays(numbersArray, numbersSet)[0]
+        this.quadrupledNumber = getDifferenceArrays(numbersArray, numbersSet)[0]
     }
 
     // 役のランクを返す
     getYakuRank(){
-        return 3
+        return 7
     }
     // 役の名前を返す
     getYakuName(){
-        return 'ThreeCard'
+        return 'FourCard'
     }
     // 勝敗判定に使う数字を返す
     getScore(){
-        return getScore(this.tripledNumber)
+        return getScore(this.quadrupledNumber)
     }
 }

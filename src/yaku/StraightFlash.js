@@ -1,6 +1,6 @@
-import deepcopyArray from "../deepcopyArray";
-import cmpCardsByScoreAsc from "../cmpCardsByScoreAsc";
-import getScore from '../getScore.js'
+import deepcopyArray from "../utils/deepcopyArray";
+import cmpCardsByScoreAsc from "../utils/cmpCardsByScoreAsc";
+import getScore from '../utils/getScore.js'
 import AbstractYaku from "./AbstractYaku";
 
 // StraightFlashクラス

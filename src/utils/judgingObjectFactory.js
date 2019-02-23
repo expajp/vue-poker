@@ -1,5 +1,5 @@
-import { Hand } from './Hand.js'
-import { FourCard, None, RoyalStraightFlash, StraightFlash, TwoPair, Flash, FullHouse, OnePair, Straight, ThreeCard } from './yaku'
+import { Hand } from '../Hand.js'
+import { FourCard, None, RoyalStraightFlash, StraightFlash, TwoPair, Flash, FullHouse, OnePair, Straight, ThreeCard } from '../yaku'
 
 export default (playersHand) => {
     const hand = new Hand(playersHand)

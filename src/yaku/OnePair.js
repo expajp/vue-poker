@@ -1,7 +1,7 @@
 import AbstractYaku from './AbstractYaku.js'
-import deepcopyArray from '../deepcopyArray.js'
-import getScore from '../getScore.js'
-import getDifferenceArrays from '../getDifferenceArrays.js'
+import deepcopyArray from '../utils/deepcopyArray.js'
+import getScore from '../utils/getScore.js'
+import getDifferenceArrays from '../utils/getDifferenceArrays.js'
 
 // OnePairクラス
 export class OnePair extends AbstractYaku {
