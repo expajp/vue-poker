@@ -4,7 +4,7 @@ import getScore from '../getScore.js'
 import getDifferenceArrays from '../getDifferenceArrays.js'
 
 // OnePairクラス
-export default class extends AbstractYaku {
+export class OnePair extends AbstractYaku {
     constructor(hand){
         super(hand)
 

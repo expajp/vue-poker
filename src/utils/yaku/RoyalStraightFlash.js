@@ -1,7 +1,8 @@
 import getScore from '../getScore.js'
+import AbstractYaku from './AbstractYaku.js';
 
 // RoyalStraightFlashクラス
-export default class {
+export class RoyalStraightFlash extends AbstractYaku {
     constructor(hand){
         super(hand)
         this.suit = hand[0].suit

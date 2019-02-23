@@ -1,7 +1,7 @@
 import AbstractYaku from "./AbstractYaku";
 
 // Noneクラス（ブタ）
-export default class extends AbstractYaku {
+export class None extends AbstractYaku {
     constructor(hand){
         super(hand)
     }

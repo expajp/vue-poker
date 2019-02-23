@@ -1,5 +1,5 @@
 import parseHand from './parseHand.js'
-import OnePair from './yaku/OnePair.js'
+import { FourCard, None, RoyalStraightFlash, StraightFlash, TwoPair, Flash, FullHouse, OnePair, Straight, ThreeCard } from './yaku'
 
 export default (playersHand) => {
     const parsedHand = parseHand(playersHand)
@@ -13,7 +13,6 @@ function generateJudgingObject(parsedHand){
     console.log(onePair)
     console.log(onePair.getYakuRank())
     console.log(onePair.getYakuName())
-    console.log(onePair.getNumber())
-    console.log(onePair.getNumber())
+    console.log(onePair.getScore())
     return onePair
 }

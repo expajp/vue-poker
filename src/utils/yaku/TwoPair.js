@@ -5,7 +5,7 @@ import getDifferenceArrays from '../getDifferenceArrays.js'
 import compareCardsForAscendingRangeOfScore from './compareCardsForAscendingRangeOfScore.js'
 
 // TwoPairクラス
-export default class extends AbstractYaku {
+export class TwoPair extends AbstractYaku {
     constructor(hand){
         super(hand)
 

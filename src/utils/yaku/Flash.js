@@ -1,9 +1,10 @@
 import deepcopyArray from "../deepcopyArray";
 import compareCardsForAscendingRangeOfScore from "../compareCardsForAscendingRangeOfScore";
 import getScore from '../getScore.js'
+import AbstractYaku from "./AbstractYaku";
 
 // Flashクラス
-export default class {
+export class Flash extends AbstractYaku {
     constructor(hand){
         super(hand)
         const handSortedByScore = deepcopyArray(hand).sort(compareCardsForAscendingRangeOfScore)

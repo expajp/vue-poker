@@ -4,7 +4,7 @@ import getScore from '../getScore.js'
 import getDifferenceArrays from '../getDifferenceArrays.js'
 
 // FullHouseクラス
-export default class extends AbstractYaku {
+export class FullHouse extends AbstractYaku {
     constructor(hand){
         super(hand)
 

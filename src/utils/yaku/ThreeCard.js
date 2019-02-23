@@ -4,7 +4,7 @@ import getScore from '../getScore.js'
 import getDifferenceArrays from '../getDifferenceArrays.js'
 
 // ThreeCardクラス
-export default class extends AbstractYaku {
+export class ThreeCard extends AbstractYaku {
     constructor(hand){
         super(hand)
 

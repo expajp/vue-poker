@@ -1,9 +1,10 @@
 import deepcopyArray from "../deepcopyArray";
 import compareCardsForAscendingRangeOfScore from "../compareCardsForAscendingRangeOfScore";
 import getScore from '../getScore.js'
+import AbstractYaku from "./AbstractYaku";
 
 // StraightFlashクラス
-export default class {
+export class StraightFlash extends AbstractYaku {
     constructor(hand){
         super(hand)
         const handSortedByScore = deepcopyArray(hand).sort((a, b) => compareCardsForAscendingRangeOfScore(a, b))
