@@ -2,7 +2,7 @@ import AbstractYaku from './AbstractYaku.js'
 import deepcopyArray from '../deepcopyArray.js'
 import getScore from '../getScore.js'
 import getDifferenceArrays from '../getDifferenceArrays.js'
-import compareCardsForAscendingRangeOfScore from './compareCardsForAscendingRangeOfScore.js'
+import compareCardsForAscendingRangeOfScore from '../compareCardsForAscendingRangeOfScore.js'
 
 // TwoPairクラス
 export class TwoPair extends AbstractYaku {

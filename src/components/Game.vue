@@ -25,6 +25,7 @@
 <script>
 import Dealer from './Dealer'
 import Player from './Player'
+import judgeVictoryOrDefeat from '../utils/judgeVictoryOrDefeat.js'
 
 export default {
     name: 'game',
@@ -45,16 +46,13 @@ export default {
         postexec: function(dealersResult){
             this.showButtons = false
             this.dealersResult = dealersResult
-            this.mainMessage = `Dealer : ${dealersResult.yaku} / Player : ${this.playersResult.yaku}`
+            this.mainMessage = `Dealer : ${dealersResult.getYakuName()} / Player : ${this.playersResult.getYakuName()}`
         },
     },
     computed: {
         resultMessage: function(){
             if(this.showButtons) return ''
-            if(this.playersResult.yaku === 'None' && this.dealersResult.yaku === 'None') return 'Draw'
-            if(this.playersResult.comparableStr > this.dealersResult.comparableStr) return 'You Win'
-            if(this.playersResult.comparableStr < this.dealersResult.comparableStr) return 'You Lose'
-            return 'Error!!'
+            return judgeVictoryOrDefeat(this.playersResult, this.dealersResult)
         }
     }
 }

@@ -8,7 +8,7 @@ export class OnePair extends AbstractYaku {
     constructor(hand){
         super(hand)
 
-        const numbersArray = deepcopyArray(hand).map(card => card.number)
+        const numbersArray = deepcopyArray(this.hand).map(card => card.number)
         const numbersSet = [...new Set(deepcopyArray(numbersArray))]
         this.pairedNumber = getDifferenceArrays(numbersArray, numbersSet)
     }

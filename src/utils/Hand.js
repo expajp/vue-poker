@@ -8,7 +8,7 @@ export class Hand {
         // 手札に含まれるカード
         this.cards = arr
         
-        this.numbersArray = deepcopyArray(this.card).map(card => card.number)
+        this.numbersArray = deepcopyArray(this.cards).map(card => card.number)
         const numbersSet = [...new Set(deepcopyArray(this.numbersArray))]
 
         // 重複している数字のみ、かつ多重度が1つ減ったもの
