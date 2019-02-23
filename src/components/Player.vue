@@ -26,7 +26,7 @@
 </style>
 
 <script>
-import pick from '../utils/deck.js'
+import pickCard from '../utils/pickCard.js'
 import getJudgingObject from '../utils/judgingObjectFactory.js'
 import cmpCardsByScoreAsc from '../utils/cmpCardsByScoreAsc.js'
 import Card from './Card'
@@ -44,7 +44,7 @@ export default {
         }
     },
     created: function(){
-        for(let i=0;i<5;i++) this.hand.push(pick())
+        for(let i=0;i<5;i++) this.hand.push(pickCard())
         this.hand.forEach(card => { 
             card.hide = false 
             card.selected = false
@@ -67,7 +67,7 @@ export default {
 
             this.selected.forEach(card => {
                 const handIdx = this.hand.findIndex(elm => isEqualCards(elm, card))
-                this.hand.splice(handIdx, 1, pick(true))
+                this.hand.splice(handIdx, 1, pickCard(true))
 
                 const selectedIdx = this.selected.findIndex(elm => isEqualCards(elm, card))
                 this.selected.splice(selectedIdx, 1, this.hand[handIdx])

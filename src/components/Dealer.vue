@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import pick from '../utils/deck.js'
+import pickCard from '../utils/pickCard.js'
 import getJudgingObject from '../utils/judgingObjectFactory.js'
 import cmpCardsByScoreAsc from '../utils/cmpCardsByScoreAsc.js'
 import Card from './Card'
@@ -30,7 +30,7 @@ export default {
     },
     created: function(){
         for(let i=0;i<5;i++){
-            this.hand.push(pick())
+            this.hand.push(pickCard())
         }
         this.hand.forEach(card => { card.hide = true })
         this.hand.sort((a, b) => cmpCardsByScoreAsc(a, b))
