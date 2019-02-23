@@ -1,5 +1,3 @@
-import score from './score.js'
-import compareCardsForAscendingRangeOfScore from './compareCardsForAscendingRangeOfScore.js'
 import parseHand from './parseHand.js'
 import OnePair from './yaku/OnePair.js'
 
