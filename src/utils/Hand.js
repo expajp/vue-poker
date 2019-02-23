@@ -1,5 +1,5 @@
 import getScore from './getScore.js'
-import compareCardsForAscendingRangeOfScore from './compareCardsForAscendingRangeOfScore.js'
+import cmpCardsByScoreAsc from './cmpCardsByScoreAsc.js'
 import deepcopyArray from './deepcopyArray.js'
 import getDifferenceArrays from './getDifferenceArrays.js'
 
@@ -27,7 +27,7 @@ export class Hand {
     }
 
     isStraight(){
-        const sortedHand = deepcopyArray(this.cards).sort((a, b) => compareCardsForAscendingRangeOfScore(a, b))
+        const sortedHand = deepcopyArray(this.cards).sort((a, b) => cmpCardsByScoreAsc(a, b))
         const scoreDiff = Math.abs(getScore(sortedHand[4].number)-getScore(sortedHand[0].number))
         const numbers = [...new Set(deepcopyArray(sortedHand).map(card => card.number))]
 

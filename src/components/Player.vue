@@ -28,7 +28,7 @@
 <script>
 import pick from '../utils/deck.js'
 import getJudgingObject from '../utils/judgingObjectFactory.js'
-import compareCardsForAscendingRangeOfScore from '../utils/compareCardsForAscendingRangeOfScore.js'
+import cmpCardsByScoreAsc from '../utils/cmpCardsByScoreAsc.js'
 import Card from './Card'
 import isEqualCards from '../utils/isEqualCards.js'
 
@@ -49,7 +49,7 @@ export default {
             card.hide = false 
             card.selected = false
         })
-        this.hand.sort((a, b) => compareCardsForAscendingRangeOfScore(a, b))
+        this.hand.sort((a, b) => cmpCardsByScoreAsc(a, b))
     },
     computed: {
         selected: function(){ 

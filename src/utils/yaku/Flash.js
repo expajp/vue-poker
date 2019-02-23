@@ -1,5 +1,5 @@
 import deepcopyArray from "../deepcopyArray";
-import compareCardsForAscendingRangeOfScore from "../compareCardsForAscendingRangeOfScore";
+import cmpCardsByScoreAsc from "../cmpCardsByScoreAsc";
 import getScore from '../getScore.js'
 import AbstractYaku from "./AbstractYaku";
 
@@ -7,7 +7,7 @@ import AbstractYaku from "./AbstractYaku";
 export class Flash extends AbstractYaku {
     constructor(hand){
         super(hand)
-        const handSortedByScore = deepcopyArray(hand).sort(compareCardsForAscendingRangeOfScore)
+        const handSortedByScore = deepcopyArray(hand).sort(cmpCardsByScoreAsc)
         this.maxScoredNumber = handSortedByScore[4].number
         this.suit = handSortedByScore[4].suit
     }

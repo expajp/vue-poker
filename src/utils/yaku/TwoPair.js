@@ -2,7 +2,7 @@ import AbstractYaku from './AbstractYaku.js'
 import deepcopyArray from '../deepcopyArray.js'
 import getScore from '../getScore.js'
 import getDifferenceArrays from '../getDifferenceArrays.js'
-import compareCardsForAscendingRangeOfScore from '../compareCardsForAscendingRangeOfScore.js'
+import cmpCardsByScoreAsc from '../cmpCardsByScoreAsc.js'
 
 // TwoPairクラス
 export class TwoPair extends AbstractYaku {
@@ -13,7 +13,7 @@ export class TwoPair extends AbstractYaku {
         const numbersSet = [...new Set(deepcopyArray(numbersArray))]
 
         const doubledNumbers = getDifferenceArrays(numbersArray, numbersSet)
-        const twoPairedNumbers = doubledNumbers.sort((a, b) => compareCardsForAscendingRangeOfScore(a, b))
+        const twoPairedNumbers = doubledNumbers.sort((a, b) => cmpCardsByScoreAsc(a, b))
 
         this.maxPairedNumber = twoPairedNumbers[1]
         this.secondPairedNumbers = twoPairedNumbers[0]
