@@ -1,4 +1,4 @@
-import score from './score.js'
+import getScore from './getScore.js'
 import compareCardsForAscendingRangeOfScore from './compareCardsForAscendingRangeOfScore.js'
 import deepcopyArray from './deepcopyArray.js'
 import getDifferenceArrays from './getDifferenceArrays.js'
@@ -23,7 +23,7 @@ function numbersCounter(hand) {
     // ワンペア、スリーカード、フォーカードの判別
     const doubledNumbersSet = [...new Set(deepcopyArray(doubledNumbers))]
     if(doubledNumbersSet.length == 1) {
-        ret.numbersScore = score(doubledNumbersSet[0])
+        ret.numbersScore = getScore(doubledNumbersSet[0])
         const suitsArray = deepcopyArray(hand)
                             .filter(card => card.number === doubledNumbersSet[0])
                             .map(card => card.suit)
@@ -50,8 +50,8 @@ function numbersCounter(hand) {
             ret.pairs = 2
 
             const twoPairedNumbers = doubledNumbers.sort((a, b) => compareCardsForAscendingRangeOfScore(a, b))
-            ret.numbersScore = score(twoPairedNumbers[1])
-            ret.secondNumbersScore = score(twoPairedNumbers[0])
+            ret.numbersScore = getScore(twoPairedNumbers[1])
+            ret.secondNumbersScore = getScore(twoPairedNumbers[0])
             
             ret.numbersSuit = deepcopyArray(hand)
                                 .filter(card => card.number == twoPairedNumbers[1] )
@@ -64,7 +64,7 @@ function numbersCounter(hand) {
             ret.numbersSuit = ''
 
             const tripledNumber = getDifferenceArrays(doubledNumbers, doubledNumbersSet)[0]
-            ret.numbersScore = score(tripledNumber)
+            ret.numbersScore = getScore(tripledNumber)
         }
     }
     return ret
@@ -75,8 +75,8 @@ function flashChecker(hand) {
 }
 
 function straightChecker(hand) {
-    const sortedHand = hand.sort((a, b) => score(a.number)-score(b.number))
-    const scoreDiff = Math.abs(score(sortedHand[4].number)-score(sortedHand[0].number))
+    const sortedHand = hand.sort((a, b) => getScore(a.number)-getScore(b.number))
+    const scoreDiff = Math.abs(getScore(sortedHand[4].number)-getScore(sortedHand[0].number))
     const numbers = [...new Set(deepcopyArray(sortedHand).map(card => card.number))]
 
     if(scoreDiff === 4 && numbers.length === 5) return { straight: true, straightSuit: sortedHand[maxIndex].suit }

@@ -1,6 +1,6 @@
 import AbstractYaku from './AbstractYaku.js'
 import deepcopyArray from '../deepcopyArray.js'
-import getScore from '../score.js'
+import getScore from '../getScore.js'
 import getDifferenceArrays from '../getDifferenceArrays.js'
 
 // FullHouseクラス

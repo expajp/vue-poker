@@ -1,6 +1,6 @@
 import deepcopyArray from "../deepcopyArray";
 import compareCardsForAscendingRangeOfScore from "../compareCardsForAscendingRangeOfScore";
-import getScore from '../score.js'
+import getScore from '../getScore.js'
 
 // Flashクラス
 export default class {

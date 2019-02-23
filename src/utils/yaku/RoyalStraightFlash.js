@@ -1,4 +1,4 @@
-import getScore from '../score.js'
+import getScore from '../getScore.js'
 
 // RoyalStraightFlashクラス
 export default class {

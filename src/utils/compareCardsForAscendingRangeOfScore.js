@@ -1,5 +1,5 @@
-import score from './score.js'
+import getScore from './getScore.js'
 
 export default (card_a, card_b) => {
-    return score(card_a.number)-score(card_b.number)
+    return getScore(card_a.number)-getScore(card_b.number)
 }
