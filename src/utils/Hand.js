@@ -38,15 +38,15 @@ export class Hand {
         return this.doubledNumbers.length === 0
     }
 
-    hasOnePair(){
+    isOnePair(){
         return this.doubledNumbersSet.length === 1 && this.doubledNumbers.length === 1
     }
 
-    hasTwoPair(){
+    isTwoPair(){
         return this.doubledNumbersSet.length === 2 && this.doubledNumbers.length === 2
     }
     
-    hasThreeCard(){
+    isThreeCard(){
         return this.doubledNumbersSet.length === 1 && this.doubledNumbers.length === 2
     }
     
@@ -54,7 +54,7 @@ export class Hand {
         return this.doubledNumbersSet.length === 2 && this.doubledNumbers.length === 3
     }
 
-    hasFourCard(){
+    isFourCard(){
         return this.doubledNumbersSet.length === 1 && this.doubledNumbers.length === 3
     }
 }
