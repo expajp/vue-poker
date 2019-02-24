@@ -10,7 +10,7 @@ export class TwoPair extends AbstractYaku {
     constructor(hand){
         super(hand)
 
-        const numbersArray = deepcopyArray(hand).map(card => card.number)
+        const numbersArray = deepcopyArray(this.hand).map(card => card.number)
         const numbersSet = getUniqueArray(numbersArray)
 
         const doubledNumbers = getDifferenceArrays(numbersArray, numbersSet)
@@ -18,7 +18,7 @@ export class TwoPair extends AbstractYaku {
 
         this.maxPairedNumber = twoPairedNumbers[1]
         this.secondPairedNumbers = twoPairedNumbers[0]
-        this.suit = deepcopyArray(hand)
+        this.suit = deepcopyArray(this.hand)
                         .filter(card => card.number === twoPairedNumbers[1] )
                         .sort()[1]
                         .suit
