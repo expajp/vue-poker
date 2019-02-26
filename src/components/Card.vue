@@ -25,16 +25,16 @@ export default {
             よって、imgにわたすのはrequireの戻り値
             参考: http://tk2000ex.blogspot.com/2017/11/vue.html
         */
-        image: function(){
+        image() {
             const filename = this.hide ? 'back' : `${this.suit}_${this.number.toString().padStart(2, '0')}` // 1桁のアタマは0に
             return require(`../assets/card_${filename}.png`)
         },
-        class: function(){
+        class() {
             return { card: true, selected: this.selected }
         },
     }, 
     methods: {
-        select: function(){
+        select() {
             this.$emit('select', this)
         }
     }

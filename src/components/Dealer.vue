@@ -28,7 +28,7 @@ export default {
             result: 0
         }
     },
-    created: function(){
+    created() {
         for(let i=0;i<5;i++){
             this.hand.push(pickCard())
         }
@@ -37,7 +37,7 @@ export default {
         this.$on('postexec', this.postexec)
     },
     methods: {
-        postexec: function(){
+        postexec() {
             this.result = getJudgingObject(this.hand)
             this.hand.forEach(card => { card.hide = false })
             this.$emit('result', this.result)

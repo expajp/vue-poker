@@ -43,7 +43,7 @@ export default {
             result: 0
         }
     },
-    created: function(){
+    created() {
         for(let i=0;i<5;i++) this.hand.push(pickCard())
         this.hand.forEach(card => { 
             card.hide = false 
@@ -52,17 +52,17 @@ export default {
         this.hand.sort((a, b) => cmpCardsByScoreAsc(a, b))
     },
     computed: {
-        selected: function(){ 
+        selected() { 
             return this.hand.filter(card => card.selected) 
         }
     },
     methods: {
         // カードを選択したときの処理、Cardコンポーネントから発火させる
-        select: function(card){
+        select(card) {
             const selectedCard = this.hand.find(elm => isEqualCards(elm, card))
             selectedCard.selected = !card.selected
         },
-        change: function(){
+        change() {
             if(this.selected.length > 0) this.changed = true
 
             this.selected.forEach(card => {
@@ -74,7 +74,7 @@ export default {
             })
             this.stand()
         },
-        stand: function(){
+        stand() {
             this.result = getJudgingObject(this.hand)
             this.hand.forEach(card => { card.selected = false })
             this.$emit('stand', this.result)
