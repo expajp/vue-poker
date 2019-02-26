@@ -7,7 +7,7 @@ import AbstractYaku from "./AbstractYaku";
 export class Flash extends AbstractYaku {
     constructor(hand){
         super(hand)
-        const handSortedByScore = deepcopyArray(hand).sort(cmpCardsByScoreAsc)
+        const handSortedByScore = deepcopyArray(this.hand).sort(cmpCardsByScoreAsc)
         this.maxScoredNumber = handSortedByScore[4].number
         this.suit = handSortedByScore[4].suit
     }

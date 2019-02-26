@@ -9,7 +9,7 @@ export class ThreeCard extends AbstractYaku {
     constructor(hand){
         super(hand)
 
-        const numbersArray = deepcopyArray(hand).map(card => card.number)
+        const numbersArray = deepcopyArray(this.hand).map(card => card.number)
         const numbersSet = getUniqueArray(numbersArray)
         this.tripledNumber = getDifferenceArrays(numbersArray, numbersSet)[0]
     }

@@ -5,7 +5,7 @@ import AbstractYaku from './AbstractYaku.js';
 export class RoyalStraightFlash extends AbstractYaku {
     constructor(hand){
         super(hand)
-        this.suit = hand[0].suit
+        this.suit = this.hand[0].suit
     }
 
     // 役のランクを返す

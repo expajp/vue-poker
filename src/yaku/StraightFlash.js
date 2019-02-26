@@ -7,7 +7,7 @@ import AbstractYaku from "./AbstractYaku";
 export class StraightFlash extends AbstractYaku {
     constructor(hand){
         super(hand)
-        const handSortedByScore = deepcopyArray(hand).sort((a, b) => cmpCardsByScoreAsc(a, b))
+        const handSortedByScore = deepcopyArray(this.hand).sort((a, b) => cmpCardsByScoreAsc(a, b))
         this.maxScoredNumber = handSortedByScore[4].number
         this.suit = handSortedByScore[4].suit
     }

@@ -9,7 +9,7 @@ export class FullHouse extends AbstractYaku {
     constructor(hand){
         super(hand)
 
-        const numbersArray = deepcopyArray(hand).map(card => card.number)
+        const numbersArray = deepcopyArray(this.hand).map(card => card.number)
         const numbersSet = getUniqueArray(numbersArray)
         const doubledNumbers = getDifferenceArrays(numbersArray, numbersSet)
         const doubledNumbersSet = getUniqueArray(doubledNumbers)
