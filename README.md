@@ -9,7 +9,6 @@
 1ページ完結なので、VuexやVue Routerは使わない
 
 ## 残作業
-* 各種パッケージのアップデート
 * judgingObjectFactoryをmixinとして定義
   * https://jp.vuejs.org/v2/guide/mixins.html
 * utilityメソッドをまとめて読み込めるようにする
