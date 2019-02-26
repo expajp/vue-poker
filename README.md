@@ -9,8 +9,9 @@
 1ページ完結なので、VuexやVue Routerは使わない
 
 ## 残作業
-* judgingObjectFactoryをmixinとして定義
-  * https://jp.vuejs.org/v2/guide/mixins.html
+* 手札をコンポーネント化
+  * 勝敗判定メソッドもそちらに持たせる
+  * judgingObjectFactoryを定義
 * utilityメソッドをまとめて読み込めるようにする
 * テストを書く
   * jestの導入
