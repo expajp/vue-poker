@@ -16,9 +16,11 @@
     "@babel/core": "^7.3.4",
     "@babel/polyfill": "^7.2.5",
     "@babel/preset-env": "^7.3.4",
+    "@jest/core": "^24.5.0",
     "@vue/babel-preset-app": "^3.5.1",
     "@vue/cli-plugin-babel": "^3.5.0",
     "@vue/cli-plugin-eslint": "^3.5.0",
+    "@vue/cli-plugin-unit-jest": "^3.5.1",
     "@vue/cli-service": "^3.5.0",
     "@vue/test-utils": "1.0.0-beta.29",
     "babel-core": "^6.26.3",
@@ -26,9 +28,9 @@
     "babel-jest": "^24.5.0",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",
-    "jest": "^24.3.1",
-    "vue-jest": "^3.0.4",
-    "vue-template-compiler": "^2.5.21"
+    "jest-haste-map": "^24.5.0",
+    "jest-resolve": "^24.5.0",
+    "vue-template-compiler": "^2.6.9"
   },
   "eslintConfig": {
     "root": true,
@@ -61,7 +63,10 @@
     },
     "moduleNameMapper": {
       "^@/(.*)$": "<rootDir>/src/$1"
-    }
+    },
+    "transformIgnorePatterns": [
+      "/node_modules/(?!name-of-lib-o-transform)"
+    ]
   },
   "browserslist": [
     "> 1%",
