@@ -5,32 +5,19 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "test": "jest"
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@babel/helper-optimise-call-expression": "^7.0.0",
     "vue": "^2.6.6"
   },
   "devDependencies": {
-    "@babel/core": "^7.3.4",
-    "@babel/polyfill": "^7.2.5",
-    "@babel/preset-env": "^7.3.4",
-    "@jest/core": "^24.5.0",
-    "@vue/babel-preset-app": "^3.5.1",
-    "@vue/cli-plugin-babel": "^3.5.0",
-    "@vue/cli-plugin-eslint": "^3.5.0",
-    "@vue/cli-plugin-unit-jest": "^3.5.1",
-    "@vue/cli-service": "^3.5.0",
-    "@vue/test-utils": "1.0.0-beta.29",
-    "babel-core": "^6.26.3",
+    "@vue/cli-plugin-babel": "^3.4.0",
+    "@vue/cli-plugin-eslint": "^3.4.0",
+    "@vue/cli-service": "^3.4.0",
     "babel-eslint": "^10.0.1",
-    "babel-jest": "^24.5.0",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",
-    "jest-haste-map": "^24.5.0",
-    "jest-resolve": "^24.5.0",
-    "vue-template-compiler": "^2.6.9"
+    "vue-template-compiler": "^2.5.21"
   },
   "eslintConfig": {
     "root": true,
@@ -50,23 +37,6 @@
     "plugins": {
       "autoprefixer": {}
     }
-  },
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "vue"
-    ],
-    "transform": {
-      ".*\\.(vue)$": "vue-jest",
-      "^.+\\.js$": "babel-jest"
-    },
-    "moduleNameMapper": {
-      "^@/(.*)$": "<rootDir>/src/$1"
-    },
-    "transformIgnorePatterns": [
-      "/node_modules/(?!name-of-lib-o-transform)"
-    ]
   },
   "browserslist": [
     "> 1%",
