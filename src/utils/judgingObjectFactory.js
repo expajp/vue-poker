@@ -13,7 +13,6 @@ export default (playersHand) => {
 function generateJudgingObject(hand){    
     if(hand.isFlash()){
         if(hand.isStraight()){
-            console.log(hand.getMaxScore())
             if(hand.getMaxScore() === 12) return new RoyalStraightFlash(hand)
             else return new StraightFlash(hand)
         } else {
