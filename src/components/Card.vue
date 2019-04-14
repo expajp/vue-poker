@@ -1,6 +1,5 @@
 <template>
     <div @click="select" :class="{ 'card': true, 'selected': selected }">
-        <span id="hoge">ほげ</span>
         <img :src="image" height="280" />
     </div>
 </template>
