@@ -1,7 +1,6 @@
 <template>
     <div @click="select" :class="{ 'card': true, 'selected': selected }">
-        <!-- <img :src="image" height="280" />  -->
-        {{ image }}
+        <img :src="image" height="280" /> 
     </div>
 </template>
 
