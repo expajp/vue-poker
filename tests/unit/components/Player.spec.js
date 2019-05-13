@@ -28,3 +28,13 @@ describe("selectedが正しく抽出される", () => {
         expect(Player.computed.selected.call({ hand: hand }).length).toBe(2)
     })
 })
+
+describe("カードをselectedにする", () => {
+    const player = mount(Player)
+    const card = player.find(".card:first-child")
+
+    it("カードを選択するとクラスが付与される", () => {
+        card.trigger("click")
+        expect(card.html()).toContain('class="card selected"')
+    })
+})
