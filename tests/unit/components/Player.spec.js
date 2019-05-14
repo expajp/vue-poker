@@ -38,3 +38,21 @@ describe("カードをselectedにする", () => {
         expect(card.html()).toContain('class="card selected"')
     })
 })
+
+describe.only("changeボタンを押す", () => {
+    
+    it("changedがtrueになる", () => {
+        const hand = [
+            { number: 10, suit: 'spade', selected: false, hide: false },
+            { number: 11, suit: 'spade', selected: true,  hide: false },
+            { number: 12, suit: 'spade', selected: false, hide: false },
+            { number: 13, suit: 'spade', selected: false, hide: false },
+            { number:  1, suit: 'spade', selected: true,  hide: false }
+        ]
+        const player = mount(Player, { propsData: { showButtons: true } })
+        player.setData({ hand: hand })
+        console.log(player.vm.changed)
+        
+        expect(true).toBe(true)
+    })
+})
