@@ -1,5 +1,6 @@
-import { mount } from "@vue/test-utils";
-import Player from "@/components/Player.vue";
+import { mount } from "@vue/test-utils"
+import Player from "@/components/Player.vue"
+import AbstractYaku from "@/yaku/AbstractYaku"
 
 describe("正しく描画される", () => {
     const player = mount(Player)
@@ -40,19 +41,27 @@ describe("カードをselectedにする", () => {
 })
 
 describe.only("changeボタンを押す", () => {
+    const hand = [
+        { number: 10, suit: 'spade', selected: false, hide: false },
+        { number: 11, suit: 'spade', selected: true,  hide: false },
+        { number: 12, suit: 'spade', selected: false, hide: false },
+        { number: 13, suit: 'spade', selected: false, hide: false },
+        { number:  1, suit: 'spade', selected: true,  hide: false }
+    ]
+    const player = mount(Player, { propsData: { showButtons: true } })
+    player.setData({ hand: hand })
+    player.find("button:first-child").trigger("click")
     
     it("changedがtrueになる", () => {
-        const hand = [
-            { number: 10, suit: 'spade', selected: false, hide: false },
-            { number: 11, suit: 'spade', selected: true,  hide: false },
-            { number: 12, suit: 'spade', selected: false, hide: false },
-            { number: 13, suit: 'spade', selected: false, hide: false },
-            { number:  1, suit: 'spade', selected: true,  hide: false }
-        ]
-        const player = mount(Player, { propsData: { showButtons: true } })
-        player.setData({ hand: hand })
-        console.log(player.vm.changed)
-        
-        expect(true).toBe(true)
+        expect(player.vm.changed).toBe(true)
+    })
+    it("stand()が実行されてresultがオブジェクトになる", () => {
+        expect(player.vm.result).toBeInstanceOf(AbstractYaku)
+    })
+    it("stand()が実行されてselectedが空になる", () => {
+        expect(player.vm.selected.length).toBe(0)
+    })
+    it("stand()が実行されて親コンポーネントのstandが発火する", () => {
+        expect(player.emitted().stand[0].length).toBe(1)
     })
 })
