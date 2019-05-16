@@ -40,7 +40,7 @@ describe("カードをselectedにする", () => {
     })
 })
 
-describe.only("changeボタンを押す", () => {
+describe("changeボタンを押す", () => {
     const hand = [
         { number: 10, suit: 'spade', selected: false, hide: false },
         { number: 11, suit: 'spade', selected: true,  hide: false },
