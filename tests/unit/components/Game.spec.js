@@ -25,8 +25,9 @@ describe("resultMessageが正しく動作する", () => {
 })
 
 describe.only("勝敗を判定する", () => {
+    const game = mount(Game)
+
     it("両者Noneならば引き分け", () => {
-        const game = mount(Game)
         const playersHand = [
             { number:  7, suit: 'spade' },
             { number:  9, suit: 'diamond' },
@@ -46,7 +47,6 @@ describe.only("勝敗を判定する", () => {
     })
     
     it("役が異なるならば強いほうが勝利", () => {
-        const game = mount(Game)
         const playersHand = new Hand([
             { number:  7, suit: 'spade' },
             { number:  8, suit: 'spade' },
@@ -65,8 +65,7 @@ describe.only("勝敗を判定する", () => {
         expect(game.vm.judgeVictoryOrDefeat(new StraightFlash(playersHand), new RoyalStraightFlash(dealersHand))).toBe('You Lose')
     })
     
-    it("ストレートフラッシュどうしで数字を比較して大きいほうが勝利", () => {
-        const game = mount(Game)
+    it("ストレートフラッシュどうしで数字を比較して強いほうが勝利", () => {
         const playersHand = new Hand([
             { number:  9, suit: 'spade' },
             { number: 10, suit: 'spade' },
@@ -84,15 +83,139 @@ describe.only("勝敗を判定する", () => {
 
         expect(game.vm.judgeVictoryOrDefeat(new StraightFlash(playersHand), new StraightFlash(dealersHand))).toBe('You Win')
     })
+    
+    it("フォーカードどうしで数字を比較して強いほうが勝利", () => {
+        const playersHand = new Hand([
+            { number: 13, suit: 'spade' },
+            { number: 13, suit: 'heart' },
+            { number: 13, suit: 'diamond' },
+            { number: 13, suit: 'club' },
+            { number: 11, suit: 'heart' }
+        ])
+        const dealersHand = new Hand([
+            { number:  1, suit: 'spade' },
+            { number:  1, suit: 'heart' },
+            { number:  1, suit: 'diamond' },
+            { number:  1, suit: 'club' },
+            { number: 12, suit: 'heart' }
+        ])
 
-    it("ツーペアどうして大きい方の数字が同じならば、もう一つの数字が大きい方が勝利", () => {
-
-    })
-
-    it("ツーペアどうしで両方数字が同じならば、大きい方の数字でスートの強い方が勝利", () => {
-
+        expect(game.vm.judgeVictoryOrDefeat(new FourCard(playersHand), new FourCard(dealersHand))).toBe('You Lose')
     })
     
+    it("フルハウスどうしで3枚組の数字を比較して強いほうが勝利", () => {
+        const playersHand = new Hand([
+            { number:  1, suit: 'spade' },
+            { number:  1, suit: 'heart' },
+            { number:  1, suit: 'diamond' },
+            { number: 11, suit: 'club' },
+            { number: 11, suit: 'heart' }
+        ])
+        const dealersHand = new Hand([
+            { number: 13, suit: 'spade' },
+            { number: 13, suit: 'heart' },
+            { number: 13, suit: 'diamond' },
+            { number: 12, suit: 'club' },
+            { number: 12, suit: 'heart' }
+        ])
+
+        expect(game.vm.judgeVictoryOrDefeat(new FullHouse(playersHand), new FullHouse(dealersHand))).toBe('You Win')
+    })
+    
+    it("フラッシュどうしで数字を比較して強いほうが勝利", () => {
+        const playersHand = new Hand([
+            { number:  1, suit: 'club' },
+            { number:  2, suit: 'club' },
+            { number:  3, suit: 'club' },
+            { number:  4, suit: 'club' },
+            { number:  5, suit: 'club' }
+        ])
+        const dealersHand = new Hand([
+            { number:  7, suit: 'spade' },
+            { number:  8, suit: 'spade' },
+            { number:  9, suit: 'spade' },
+            { number: 11, suit: 'spade' },
+            { number: 13, suit: 'spade' }
+        ])
+
+        expect(game.vm.judgeVictoryOrDefeat(new Flash(playersHand), new Flash(dealersHand))).toBe('You Win')
+    })
+
+    it("フラッシュどうしで数字が同じならばスートを比較して強いほうが勝利", () => {
+        const playersHand = new Hand([
+            { number:  1, suit: 'club' },
+            { number:  2, suit: 'club' },
+            { number:  3, suit: 'club' },
+            { number:  4, suit: 'club' },
+            { number:  5, suit: 'club' }
+        ])
+        const dealersHand = new Hand([
+            { number:  1, suit: 'spade' },
+            { number:  2, suit: 'spade' },
+            { number:  3, suit: 'spade' },
+            { number:  4, suit: 'spade' },
+            { number:  5, suit: 'spade' }
+        ])
+
+        expect(game.vm.judgeVictoryOrDefeat(new Flash(playersHand), new Flash(dealersHand))).toBe('You Lose')
+    })
+    
+    it("ストレートどうしで数字を比較して強いほうが勝利", () => {
+        const playersHand = new Hand([
+            { number:  9, suit: 'club' },
+            { number: 10, suit: 'diamond' },
+            { number: 11, suit: 'club' },
+            { number: 12, suit: 'club' },
+            { number: 13, suit: 'club' }
+        ])
+        const dealersHand = new Hand([
+            { number:  8, suit: 'spade' },
+            { number:  9, suit: 'spade' },
+            { number: 10, suit: 'spade' },
+            { number: 11, suit: 'spade' },
+            { number: 12, suit: 'diamond' }
+        ])
+
+        expect(game.vm.judgeVictoryOrDefeat(new Straight(playersHand), new Straight(dealersHand))).toBe('You Win')
+    })
+    
+    it("ストレートどうしで数字が同じならば最大数のスートを比較して強いほうが勝利", () => {
+        const playersHand = new Hand([
+            { number:  9, suit: 'club' },
+            { number: 10, suit: 'diamond' },
+            { number: 11, suit: 'club' },
+            { number: 12, suit: 'club' },
+            { number: 13, suit: 'club' }
+        ])
+        const dealersHand = new Hand([
+            { number:  9, suit: 'spade' },
+            { number: 10, suit: 'heart' },
+            { number: 11, suit: 'spade' },
+            { number: 12, suit: 'spade' },
+            { number: 13, suit: 'spade' }
+        ])
+
+        expect(game.vm.judgeVictoryOrDefeat(new Straight(playersHand), new Straight(dealersHand))).toBe('You Lose')
+    })
+    
+    it("ストレートどうしで数字が同じならば最大数のスートを比較して強いほうが勝利", () => {
+        const playersHand = new Hand([
+            { number:  9, suit: 'club' },
+            { number: 10, suit: 'diamond' },
+            { number: 11, suit: 'club' },
+            { number: 12, suit: 'club' },
+            { number: 13, suit: 'club' }
+        ])
+        const dealersHand = new Hand([
+            { number:  9, suit: 'spade' },
+            { number: 10, suit: 'heart' },
+            { number: 11, suit: 'spade' },
+            { number: 12, suit: 'spade' },
+            { number: 13, suit: 'spade' }
+        ])
+
+        expect(game.vm.judgeVictoryOrDefeat(new Straight(playersHand), new Straight(dealersHand))).toBe('You Lose')
+    })
     it("全く同じ内容ならば、エラーを投げる", () => {
 
     })
