@@ -273,12 +273,7 @@ describe("勝敗を判定する", () => {
 
         expect(game.vm.judgeVictoryOrDefeat(new TwoPair(playersHand), new TwoPair(dealersHand))).toBe('You Lose')
     })
-     
-})
-
-describe.only("ロジックの誤り", () => {
-    const game = mount(Game)
-
+    
     it("ツーペアどうしならば強い方の数を比較してより強いほうが勝利", () => {
         const playersHand = new Hand([
             { number:  1, suit: 'club' },
@@ -294,7 +289,7 @@ describe.only("ロジックの誤り", () => {
             { number: 13, suit: 'club' },
             { number: 13, suit: 'diamond' }
         ])
-
+    
         expect(game.vm.judgeVictoryOrDefeat(new TwoPair(playersHand), new TwoPair(dealersHand))).toBe('You Win')
     })
 
@@ -334,12 +329,7 @@ describe.only("ロジックの誤り", () => {
         ])
 
         expect(game.vm.judgeVictoryOrDefeat(new OnePair(playersHand), new OnePair(dealersHand))).toBe('You Lose')
-    })   
-
-})
-
-describe.skip("隔離", () => {
-    const game = mount(Game)
+    })
 
     it("全く同じ内容ならば、エラーを投げる", () => {
         const playersHand = new Hand([
@@ -356,7 +346,9 @@ describe.skip("隔離", () => {
             { number: 12, suit: 'spade' },
             { number: 13, suit: 'spade' }
         ])
-
-        expect(game.vm.judgeVictoryOrDefeat(new RoyalStraightFlash(playersHand), new RoyalStraightFlash(dealersHand))).toThrow(Error)
+    
+        expect(() => {
+            game.vm.judgeVictoryOrDefeat(new RoyalStraightFlash(playersHand), new RoyalStraightFlash(dealersHand)) 
+        }).toThrowError('勝敗が判定できません')
     })
 })

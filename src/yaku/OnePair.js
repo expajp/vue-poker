@@ -11,7 +11,7 @@ export class OnePair extends AbstractYaku {
 
         const numbersArray = deepcopyArray(this.hand).map(card => card.number)
         const numbersSet = getUniqueArray(numbersArray)
-        this.pairedNumber = getDifferenceArrays(numbersArray, numbersSet)
+        this.pairedNumber = getDifferenceArrays(numbersArray, numbersSet)[0]
     }
 
     // 役のランクを返す
