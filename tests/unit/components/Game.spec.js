@@ -1,5 +1,4 @@
 import { mount } from "@vue/test-utils"
-import { shallowMount } from "@vue/test-utils"
 import Game from "@/components/Game.vue"
 import Hand from "@/utils/Hand"
 import { FourCard, None, RoyalStraightFlash, StraightFlash, TwoPair, Flash, FullHouse, OnePair, Straight, ThreeCard } from '@/yaku'
