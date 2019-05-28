@@ -1,4 +1,5 @@
 import { mount } from "@vue/test-utils"
+import { shallowMount } from "@vue/test-utils"
 import Game from "@/components/Game.vue"
 import Hand from "@/utils/Hand"
 import { FourCard, None, RoyalStraightFlash, StraightFlash, TwoPair, Flash, FullHouse, OnePair, Straight, ThreeCard } from '@/yaku'
@@ -11,7 +12,7 @@ describe("正しく描画される", () => {
     })
 })
 
-describe("resultMessageが正しく動作する", () => {
+describe.only("resultMessageが正しく動作する", () => {
     const game = mount(Game)
 
     it("showButtonsがtrueのときは空文字列", () => {
@@ -20,7 +21,10 @@ describe("resultMessageが正しく動作する", () => {
     })
     
     it("showButtonsがfalseだとjudgeVictoryOrDefeatの結果を返す", () => {
+        game.vm.judgeVictoryOrDefeat = jest.fn(() => 'Draw')
+        game.setData({ showButtons: false })
 
+        expect(game.vm.resultMessage).toBe('Draw')
     })
 })
 
@@ -28,20 +32,20 @@ describe("勝敗を判定する", () => {
     const game = mount(Game)
 
     it("両者Noneならば引き分け", () => {
-        const playersHand = [
+        const playersHand = new Hand([
             { number:  7, suit: 'spade' },
             { number:  9, suit: 'diamond' },
             { number: 11, suit: 'clover' },
             { number: 13, suit: 'heart' },
             { number:  1, suit: 'spade' }
-        ]
-        const dealersHand = [
+        ])
+        const dealersHand = new Hand([
             { number:  6, suit: 'spade' },
             { number:  8, suit: 'diamond' },
             { number: 10, suit: 'clover' },
             { number: 12, suit: 'heart' },
             { number:  1, suit: 'spade' }
-        ]
+        ])
         
         expect(game.vm.judgeVictoryOrDefeat(new None(playersHand), new None(dealersHand))).toBe('Draw')
     })
