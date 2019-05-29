@@ -12,8 +12,8 @@
             </card>
         </div>
         <div class="flex" v-show="showButtons">
-            <button @click="change" v-show="!changed">Change</button>
-            <button @click="stand">Stand</button>
+            <button class="btn btn-primary" @click="change" v-show="!changed">Change</button>
+            <button class="btn btn-secondary" @click="stand">Stand</button>
         </div>
     </div>    
 </template>
