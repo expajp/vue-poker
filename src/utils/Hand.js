@@ -1,5 +1,5 @@
 import getScore from './getScore.js'
-import cmpCardsByScoreAsc from './cmpCardsByScoreAsc.js'
+import compareCardsByScoreAsc from './compareCardsByScoreAsc.js'
 import deepcopyArray from './deepcopyArray.js'
 import getDifferenceArrays from './getDifferenceArrays.js'
 import getUniqueArray from './getUniqueArray.js'
@@ -28,7 +28,7 @@ export default class Hand {
     }
 
     isStraight(){
-        const sortedHand = deepcopyArray(this.cards).sort((a, b) => cmpCardsByScoreAsc(a, b))
+        const sortedHand = deepcopyArray(this.cards).sort((a, b) => compareCardsByScoreAsc(a, b))
         const scoreDiff = Math.abs(getScore(sortedHand[4].number)-getScore(sortedHand[0].number))
         const numbers = getUniqueArray(deepcopyArray(sortedHand).map(card => card.number))
 

@@ -16,7 +16,7 @@
 <script>
 import pickCard from '../utils/pickCard.js'
 import JudgingObjectFactory from '../utils/JudgingObjectFactory.js'
-import cmpCardsByScoreAsc from '../utils/cmpCardsByScoreAsc.js'
+import compareCardsByScoreAsc from '../utils/compareCardsByScoreAsc.js'
 import Card from './Card'
 
 export default {
@@ -33,7 +33,7 @@ export default {
             this.hand.push(pickCard())
         }
         this.hand.forEach(card => { card.hide = true })
-        this.hand.sort((a, b) => cmpCardsByScoreAsc(a, b))
+        this.hand.sort((a, b) => compareCardsByScoreAsc(a, b))
         this.$on('postexec', this.postexec)
     },
     methods: {
