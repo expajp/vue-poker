@@ -11,7 +11,7 @@ describe("正しく描画される", () => {
     })
 })
 
-describe.only("resultMessageが正しく動作する", () => {
+describe("resultMessageが正しく動作する", () => {
     const game = mount(Game)
 
     it("showButtonsがtrueのときは空文字列", () => {

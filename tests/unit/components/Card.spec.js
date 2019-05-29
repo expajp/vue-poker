@@ -1,5 +1,4 @@
 import { shallowMount } from "@vue/test-utils";
-import { render } from "@vue/server-test-utils";
 import Card from "@/components/Card.vue";
 
 describe("正しく描画される", () => {
@@ -16,7 +15,6 @@ describe("正しく描画される", () => {
     )
 
     it("正しくHTML化される", () => {
-        console.log(card.html())
         expect(card.find(".card").exists()).toBe(true)
     })  
 })
