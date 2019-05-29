@@ -27,7 +27,7 @@
 
 <script>
 import pickCard from '../utils/pickCard.js'
-import getJudgingObject from '../utils/judgingObjectFactory.js'
+import JudgingObjectFactory from '../utils/JudgingObjectFactory.js'
 import cmpCardsByScoreAsc from '../utils/cmpCardsByScoreAsc.js'
 import Card from './Card'
 import isEqualCards from '../utils/isEqualCards.js'
@@ -75,7 +75,7 @@ export default {
             this.stand()
         },
         stand() {
-            this.result = getJudgingObject(this.hand)
+            this.result = JudgingObjectFactory(this.hand)
             this.hand.forEach(card => { card.selected = false })
             this.$emit('stand', this.result)
         }

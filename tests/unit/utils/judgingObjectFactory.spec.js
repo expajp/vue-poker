@@ -1,4 +1,4 @@
-import judgingObjectFactory from '@/utils/judgingObjectFactory'
+import JudgingObjectFactory from '@/utils/JudgingObjectFactory'
 import { FourCard, None, RoyalStraightFlash, StraightFlash, TwoPair, Flash, FullHouse, OnePair, Straight, ThreeCard } from '@/yaku'
 
 
@@ -12,7 +12,7 @@ describe('ロイヤルストレートフラッシュが正しく判別される'
     ]
 
     it('戻り値の生成元クラス名がRoyalStraightFlash', () => {
-        expect(judgingObjectFactory(hand)).toBeInstanceOf(RoyalStraightFlash)
+        expect(JudgingObjectFactory(hand)).toBeInstanceOf(RoyalStraightFlash)
     })
 })
 
@@ -26,7 +26,7 @@ describe('ストレートフラッシュが正しく判別される', () =>{
     ]
 
     it('戻り値の生成元クラス名がStraightFlash', () => {
-        expect(judgingObjectFactory(hand)).toBeInstanceOf(StraightFlash)
+        expect(JudgingObjectFactory(hand)).toBeInstanceOf(StraightFlash)
     })
 })
 
@@ -40,7 +40,7 @@ describe('フォーカードが正しく判別される', () =>{
     ]
 
     it('戻り値の生成元クラス名がFourCard', () => {
-        expect(judgingObjectFactory(hand)).toBeInstanceOf(FourCard)
+        expect(JudgingObjectFactory(hand)).toBeInstanceOf(FourCard)
     })
 })
 
@@ -54,7 +54,7 @@ describe('フルハウスが正しく判別される', () =>{
     ]
 
     it('戻り値の生成元クラス名がFullHouse', () => {
-        expect(judgingObjectFactory(hand)).toBeInstanceOf(FullHouse)
+        expect(JudgingObjectFactory(hand)).toBeInstanceOf(FullHouse)
     })
 })
 
@@ -68,7 +68,7 @@ describe('フラッシュが正しく判別される', () =>{
     ]
 
     it('戻り値の生成元クラス名がFlash', () => {
-        expect(judgingObjectFactory(hand)).toBeInstanceOf(Flash)
+        expect(JudgingObjectFactory(hand)).toBeInstanceOf(Flash)
     })
 })
 
@@ -82,7 +82,7 @@ describe('ストレートが正しく判別される', () =>{
     ]
 
     it('戻り値の生成元クラス名がStraight', () => {
-        expect(judgingObjectFactory(hand)).toBeInstanceOf(Straight)
+        expect(JudgingObjectFactory(hand)).toBeInstanceOf(Straight)
     })
 })
 
@@ -96,7 +96,7 @@ describe('スリーカードが正しく判別される', () =>{
     ]
 
     it('戻り値の生成元クラス名がThreeCard', () => {
-        expect(judgingObjectFactory(hand)).toBeInstanceOf(ThreeCard)
+        expect(JudgingObjectFactory(hand)).toBeInstanceOf(ThreeCard)
     })
 })
 
@@ -110,7 +110,7 @@ describe('ツーペアが正しく判別される', () =>{
     ]
 
     it('戻り値の生成元クラス名がTwoPair', () => {
-        expect(judgingObjectFactory(hand)).toBeInstanceOf(TwoPair)
+        expect(JudgingObjectFactory(hand)).toBeInstanceOf(TwoPair)
     })
 })
 
@@ -124,7 +124,7 @@ describe('ワンペアが正しく判別される', () =>{
     ]
 
     it('戻り値の生成元クラス名がOnePair', () => {
-        expect(judgingObjectFactory(hand)).toBeInstanceOf(OnePair)
+        expect(JudgingObjectFactory(hand)).toBeInstanceOf(OnePair)
     })
 })
 

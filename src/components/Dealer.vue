@@ -15,7 +15,7 @@
 
 <script>
 import pickCard from '../utils/pickCard.js'
-import getJudgingObject from '../utils/judgingObjectFactory.js'
+import JudgingObjectFactory from '../utils/JudgingObjectFactory.js'
 import cmpCardsByScoreAsc from '../utils/cmpCardsByScoreAsc.js'
 import Card from './Card'
 
@@ -38,7 +38,7 @@ export default {
     },
     methods: {
         postexec() {
-            this.result = getJudgingObject(this.hand)
+            this.result = JudgingObjectFactory(this.hand)
             this.hand.forEach(card => { card.hide = false })
             this.$emit('result', this.result)
         }
