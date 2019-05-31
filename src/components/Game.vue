@@ -1,22 +1,26 @@
 <template>
-    <div id="game">
+    <div class="container-fluid" id="game">
         <dealer ref="dealer" @result="postexec" />
-        <div class="message">
+        <div class="message h4">
             {{ mainMessage }}
         </div>
         <player @stand="stand" :showButtons="showButtons" />
-        <div class="message result">
+        <div class="message h4 result">
             {{ resultMessage }}
         </div>
     </div>
 </template>
 
 <style>
-.dealer{
-    margin-top: 40px;
+.dealer {
+    margin: 20px auto;
 }
-.player{
-    margin-top: 40px;
+.player {
+    margin: 20px auto;
+}
+.message {
+    display: flex;
+    justify-content: center;
 }
 
 </style>

@@ -1,6 +1,6 @@
 <template>
     <div class="player">
-        <div class="flex">
+        <div class="flex cards">
             <card
                 v-for="(card, index) in hand"
                 :key="index"
@@ -12,8 +12,12 @@
             </card>
         </div>
         <div class="flex" v-show="showButtons">
-            <button class="btn btn-primary" @click="change" v-show="!changed">Change</button>
-            <button class="btn btn-secondary" @click="stand">Stand</button>
+            <div class="btn-group" role="group">
+                <button class="btn btn-primary" @click="change" v-show="!changed">Change</button>
+            </div>
+            <div class="btn-group" role="group">
+                <button class="btn btn-secondary" @click="stand">Stand</button>
+            </div>
         </div>
     </div>    
 </template>
@@ -21,8 +25,16 @@
 <style>
 .flex {
     display: flex;
+    justify-content: center;
 }
 
+.cards {
+    margin-bottom: 20px;
+}
+
+.btn-group {
+    margin: 0 5px;
+}
 </style>
 
 <script>
