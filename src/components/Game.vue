@@ -1,12 +1,15 @@
 <template>
     <div class="container-fluid" id="game">
         <dealer ref="dealer" @result="postexec" />
-        <div class="message h4">
+        <div class="centering h4">
             {{ mainMessage }}
         </div>
         <player @stand="stand" :showButtons="showButtons" />
-        <div class="message h4 result" v-bind:class="resultColorClass">
+        <div class="centering h4 result" v-bind:class="resultColorClass">
             {{ resultMessage }}
+        </div>
+        <div class="centering" v-if="!showButtons">
+            <button class="btn btn-success" v-on:click="reload">Retry?</button>
         </div>
     </div>
 </template>
@@ -18,7 +21,7 @@
 .player {
     margin: 20px auto;
 }
-.message {
+.centering {
     display: flex;
     justify-content: center;
 }
@@ -52,6 +55,9 @@ export default {
         }
     },
     methods: {
+        reload() {
+            location.reload()
+        },
         stand(playersResult) {
             this.playersResult = playersResult
             this.$refs.dealer.$emit('postexec')
