@@ -1,5 +1,5 @@
 <template>
-    <div @click="select" :class="{ 'card': true, 'selected': selected }">
+    <div @click="select" class="card" :class="{ 'selected': selected }">
         <img :src="image" height="280" /> 
     </div>
 </template>

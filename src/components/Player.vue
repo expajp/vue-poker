@@ -1,6 +1,6 @@
 <template>
     <div class="player">
-        <div class="flex cards">
+        <div class="flex cards" :class="{ 'allSelected': isAllSelected }">
             <card
                 v-for="(card, index) in hand"
                 :key="index"
@@ -30,6 +30,10 @@
 
 .cards {
     margin-bottom: 20px;
+}
+
+.allSelected {
+    padding-bottom: 20px;
 }
 
 .btn-group {
@@ -66,6 +70,9 @@ export default {
     computed: {
         selected() { 
             return this.hand.filter(card => card.selected) 
+        },
+        isAllSelected() {
+            return this.selected.length == 5
         }
     },
     methods: {
