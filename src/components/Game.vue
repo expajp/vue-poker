@@ -5,7 +5,7 @@
             {{ mainMessage }}
         </div>
         <player @stand="stand" :showButtons="showButtons" />
-        <div class="message h4 result" v-bind:style="{ color: resultColor }">
+        <div class="message h4 result" v-bind:class="resultColorClass">
             {{ resultMessage }}
         </div>
     </div>
@@ -22,6 +22,17 @@
     display: flex;
     justify-content: center;
 }
+
+.win {
+    color: #FF3300;
+}
+.lose {
+    color: #0033CC;
+}
+.draw {
+    color: #000000;
+}
+
 </style>
 
 
@@ -81,14 +92,14 @@ export default {
             if(this.showButtons) return ''
             return this.judgeVictoryOrDefeat(this.playersResult, this.dealersResult)
         },
-        resultColor() {
+        resultColorClass() {
             switch(this.resultMessage){
                 case 'You Win':
-                    return '#FF3300'
+                    return { win: true }
                 case 'You Lose':
-                    return '#0033CC'
+                    return { lose: true }
                 default: 
-                    return '#000000'
+                    return { draw: true }
             }
         }
     }
