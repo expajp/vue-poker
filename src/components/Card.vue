@@ -8,6 +8,10 @@
 .selected {
     margin-top: -20px;
 }
+
+.card {
+    border-width: 0;
+}
 </style>
 
 <script>
