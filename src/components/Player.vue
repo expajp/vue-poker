@@ -13,10 +13,12 @@
         </div>
         <div class="flex" v-show="showButtons">
             <div class="btn-group" role="group">
-                <button class="btn btn-primary" @click="change" v-show="!changed">Change</button>
+                <button class="btn btn-secondary" :disabled="!isSelected" @click="change" v-show="!changed">
+                    Change and Stand
+                </button>
             </div>
             <div class="btn-group" role="group">
-                <button class="btn btn-secondary" @click="stand">Stand</button>
+                <button class="btn btn-primary" @click="stand">Stand</button>
             </div>
         </div>
     </div>    
@@ -73,6 +75,9 @@ export default {
         },
         isAllSelected() {
             return this.selected.length == 5
+        },
+        isSelected() {
+            return this.selected.length > 0
         }
     },
     methods: {
