@@ -83,6 +83,7 @@ export default {
     methods: {
         // カードを選択したときの処理、Cardコンポーネントから発火させる
         select(card) {
+            if(this.changed) return
             const selectedCard = this.hand.find(elm => isEqualCards(elm, card))
             selectedCard.selected = !card.selected
         },
