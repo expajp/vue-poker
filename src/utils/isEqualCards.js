@@ -1,3 +1,1 @@
-export default (a, b) => {
-    return a.number === b.number && a.suit === b.suit
-}
+export default (a, b) => a.number === b.number && a.suit === b.suit

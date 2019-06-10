@@ -36,7 +36,7 @@ export default class Hand {
     }
 
     hasNone(){
-        return this.doubledNumbers.length === 0
+        return this.doubledNumbers.length === 0 && !this.isStraight() && !this.isFlash()
     }
 
     isOnePair(){

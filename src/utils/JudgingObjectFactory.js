@@ -1,10 +1,7 @@
 import Hand from './Hand'
 import { FourCard, None, RoyalStraightFlash, StraightFlash, TwoPair, Flash, FullHouse, OnePair, Straight, ThreeCard } from '../yaku'
 
-export default (playersHand) => {
-    const hand = new Hand(playersHand)
-    return generateJudgingObject(hand)
-}
+export default (playersHand) => generateJudgingObject(new Hand(playersHand))
 
 function generateJudgingObject(hand){    
     if(hand.isFlash()){

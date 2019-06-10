@@ -5,5 +5,5 @@ export default (arr1, arr2) => {
     arr2.forEach(item => { 
         if(ret.indexOf(item) >= 0) ret.splice(ret.indexOf(item), 1) 
     })
-    return ret    
+    return ret
 }
