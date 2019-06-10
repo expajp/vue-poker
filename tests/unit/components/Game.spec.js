@@ -7,7 +7,7 @@ describe("正しく描画される", () => {
     const game = mount(Game)
 
     it("メッセージが表示される", () => {
-        expect(game.findAll(".message").at(0).html()).toContain("Welcome to Poker")
+        expect(game.findAll(".h4").at(0).html()).toContain("Welcome to Poker")
     })
 })
 
