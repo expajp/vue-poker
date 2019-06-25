@@ -1,4 +1,4 @@
 module.exports = {
-    publicPath: '/vue-poker/',
-    outputDir: 'docs'
-}
+  publicPath: "/vue-poker/",
+  outputDir: "docs"
+};

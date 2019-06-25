@@ -1,1 +1,1 @@
-export default arr => JSON.parse(JSON.stringify(arr))
+export default arr => JSON.parse(JSON.stringify(arr));

@@ -6,14 +6,13 @@
 </template>
 
 <script>
-import Game from './components/Game'
-import Credit from './components/Credit'
+import Game from "./components/Game";
+import Credit from "./components/Credit";
 
 export default {
-  name: 'app',
+  name: "app",
   components: { Game, Credit }
-}
+};
 </script>
 
-<style>
-</style>
+<style></style>

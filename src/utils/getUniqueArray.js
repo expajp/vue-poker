@@ -1,3 +1,3 @@
 import deepcopyArray from "./deepcopyArray";
 
-export default arr => [...new Set(deepcopyArray(arr))]
+export default arr => [...new Set(deepcopyArray(arr))];
